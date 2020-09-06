@@ -67,15 +67,15 @@ astral.data = astralPlane(astral.tree = save.name,
 
 
 #Plots the astral data
-astralProject(astral.plane = astral.data,
-              local.posterior = TRUE,
-              pie.plot = "qscore",
-              save.file = "test-dataset.pdf",
-              pie.colors = c("purple", "blue", "green"),
-              node.color.text = c("white"),
-              node.color.bg = c("black"),
-              tip.label.size = 0.75,
-              pie.chart.size = 1)
+astralProjection(astral.plane = astral.data,
+                 local.posterior = TRUE,
+                 pie.plot = "qscore",
+                 save.file = "test-dataset.pdf",
+                 pie.colors = c("purple", "blue", "green"),
+                 node.color.text = c("white"),
+                 node.color.bg = c("black"),
+                 tip.label.size = 0.75,
+                 pie.chart.size = 1)
 
 
 

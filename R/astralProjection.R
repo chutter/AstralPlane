@@ -57,31 +57,31 @@ astralProjection = function(astral.plane = NULL,
 
   #Gathers pie data
   if (pie.plot == "qscore"){
-    pie.data = data.frame(node = astral.plane@node.data$node,
-                          q1 = astral.plane@node.data$q1,
-                          q2 = astral.plane@node.data$q2,
-                          q3 = astral.plane@node.data$q3)
+    pie.data = data.frame(node = astral.plane@nodeData$node,
+                          q1 = astral.plane@nodeData$q1,
+                          q2 = astral.plane@nodeData$q2,
+                          q3 = astral.plane@nodeData$q3)
   }#end qscore if
 
   if (pie.plot == "genetree"){
-    pie.data = data.frame(node = astral.plane@node.data$node,
-                          f1 = astral.plane@node.data$f1,
-                          f2 = astral.plane@node.data$f2,
-                          f3 = astral.plane@node.data$f3)
+    pie.data = data.frame(node = astral.plane@nodeData$node,
+                          f1 = astral.plane@nodeData$f1,
+                          f2 = astral.plane@nodeData$f2,
+                          f3 = astral.plane@nodeData$f3)
   }#end genetree if
 
   #Matches edge data with nodes
-  edge.no = which(astral.plane@edge.data$node2 > length(astral.plane@samples))
-  edge.node = astral.plane@tree$edge
+  edge.no = which(astral.plane@edgeData$node2 > length(astral.plane@samples))
+  edge.node = astral.plane@phylo$edge
   edge.node = data.frame(edge = rep(1:nrow(edge.node)), node1 = edge.node[,1], node2 = edge.node[,2])
 
-  edge.red = astral.plane@edge.data[edge.no,]
-  merge.data = merge(astral.plane@node.data, astral.plane@edge.data, by.x = "node", by.y = "node2")
+  edge.red = astral.plane@edgeData[edge.no,]
+  merge.data = merge(astral.plane@nodeData, astral.plane@edgeData, by.x = "node", by.y = "node2")
 
   #Saves file
   if(is.null(save.file) != T){ pdf(file = save.file, width = 10, height = 8) }
 
-  ape::plot(astral.plane@tree, cex = tip.label.size)
+  ape::plot(astral.plane@phylo, cex = tip.label.size)
   ape::edgelabels(edge = merge.data$edge,
              pie = as.matrix(merge.data[,2:4]),
              piecol = pie.colors, cex = pie.chart.size)
