@@ -36,7 +36,7 @@ And to install AstralPlane, you can use the R package devtools. Here are step-by
 And you should be done! 
 
 
-# Mini-Vingette: Usage and examples 
+# Mini-Vingette: Usage and single dataset example 
 
 I have included an R script in the main repository with some examples. It is also described here in detail. 
 
@@ -162,16 +162,22 @@ astralProjection(astral.plane = astral.data,
 Parameter explanations: 
 
 ```
-astral.plane AstralPlane S4 object of data generated from AstralPlane function
-local.posterior plot the local posterior support?
-pie.plot select one to plot: 'qscore' the quartet support or 'genetree' proportion of gene trees that support a branch
-save.file if you wish to save to file, put file name. Saves as PDF
-pie.colors select three colors to plot your pie.plot
-node.color.text if local.posterior = TRUE, select the color of posterior support text
-node.color.bg if local.posterior = TRUE, select the color of posterior support background
-tip.label.size size of the tip labels, passed to cex in plotting function
-pie.chart.size size of pie chart, passed to edgelabel plotting function
+astral.plane: AstralPlane S4 object of data generated from AstralPlane function
+local.posterior: plot the local posterior support?
+pie.plot: select one to plot: 'qscore' the quartet support or 'genetree' proportion of gene trees that support a branch
+save.file: if you wish to save to file, put file name. Saves as PDF
+pie.colors: select three colors to plot your pie.plot
+node.color.text: if local.posterior = TRUE, select the color of posterior support text
+node.color.bg: if local.posterior = TRUE, select the color of posterior support background
+tip.label.size: size of the tip labels, passed to cex in plotting function
+pie.chart.size: size of pie chart, passed to edgelabel plotting function
 
 ```
+
+
+# Mini-Vingette: Usage and many dataset example 
+
+
+Coming soon!
 
 
