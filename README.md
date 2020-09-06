@@ -76,25 +76,7 @@ save.name = "test-dataset"
 
 ```
 
-Second, the setupAstral function is used to take your folder of gene trees, apply some filters to the gene trees, and then save them in a single file that can be read by ASTRAL-III. 
-
-Parameter explanations: 
-
-genetree.folder: a folder of genetrees to prepare for astral analyses
-
-output.name: the save name for your concatenated gene tree file
-
-overwrite: whether to overwrite an existing dataset
-
-taxa.remove: species that you would like removed from each gene tree
-
-min.n.samples: the minimum number of samples to keep a gene tree
-
-min.sample.prop: the minimum proportion of samples to keep a gene tree
-
-make.polytomy: whether to collapse poorly supported nodes into polytomies
-
-polytomy.limit: if make.polytomy = TRUE, the threshold value for node collapsing
+Second, the setupAstral function is used to take your folder of gene trees, apply some filters to the gene trees, and then save them in a single file that can be read by ASTRAL-III. This should take about a minute to run. 
 
 
 ```
@@ -106,8 +88,44 @@ setupAstral(genetree.folder = tree.dir,
             polytomy.limit = 10)
 ```
 
+Parameter explanations: 
 
+```
+genetree.folder: a folder of genetrees to prepare for astral analyses
+output.name: the save name for your concatenated gene tree file
+overwrite: whether to overwrite an existing dataset
+taxa.remove: species that you would like removed from each gene tree
+min.n.samples: the minimum number of samples to keep a gene tree
+min.sample.prop: the minimum proportion of samples to keep a gene tree
+make.polytomy: whether to collapse poorly supported nodes into polytomies
+polytomy.limit: if make.polytomy = TRUE, the threshold value for node collapsing
+```
 
+When the setup function finishes running, you can now run ASTRAL-III using the runAstral function. This uses the astral jar directly, and should a minute or two depending on your number of gene trees using multi-threading and around 10 without the multi-threading option. 
+
+```
+runAstral(input.genetrees = save.name,
+          output.name = save.name,
+          astral.path = astral.path,
+          astral.t = 2,
+          quiet = FALSE,
+          load.tree = FALSE,
+          multi.thread = TRUE,
+          memory = "8g")
+```
+
+Parameter explanations: 
+
+```
+input.genetrees: a file of genetrees from setupAstral
+output.name: the save name for the astral file
+astral.path: the absolute path to astral. Needed because astral needs it.
+astral.t: the t value from astral for different annotations. t = 2, all annotations is recommended for full functionality
+quiet: hides the screen output from astral if desired
+load.tree: should the tree be loaded into R?
+multi.thread: whether to use Astral-MP multithreading or not.
+memory: memory value to be passed to java. Should be in "Xg" format, X = an integer
+```
 
 
 
