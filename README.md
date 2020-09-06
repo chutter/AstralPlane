@@ -36,7 +36,7 @@ And to install AstralPlane, you can use the R package devtools. Here are step-by
 And you should be done! 
 
 
-# Usage and examples 
+# Mini-Vingette: Usage and single dataset example 
 
 I have included an R script in the main repository with some examples. It is also described here in detail. 
 
@@ -76,7 +76,7 @@ save.name = "test-dataset"
 
 ```
 
-Second, the setupAstral function is used to take your folder of gene trees, apply some filters to the gene trees, and then save them in a single file that can be read by ASTRAL-III. This should take about a minute to run. 
+5) the setupAstral function is used to take your folder of gene trees, apply some filters to the gene trees, and then save them in a single file that can be read by ASTRAL-III. This should take about a minute to run. 
 
 
 ```
@@ -101,7 +101,7 @@ make.polytomy: whether to collapse poorly supported nodes into polytomies
 polytomy.limit: if make.polytomy = TRUE, the threshold value for node collapsing
 ```
 
-When the setup function finishes running, you can now run ASTRAL-III using the runAstral function. This uses the astral jar directly, and should a minute or two depending on your number of gene trees using multi-threading and around 10 without the multi-threading option. 
+6) When the setup function finishes running, you can now run ASTRAL-III using the runAstral function. This uses the astral jar directly, and should a minute or two depending on your number of gene trees using multi-threading and around 10 without the multi-threading option. 
 
 ```
 runAstral(input.genetrees = save.name,
@@ -127,7 +127,7 @@ multi.thread: whether to use Astral-MP multithreading or not.
 memory: memory value to be passed to java. Should be in "Xg" format, X = an integer
 ```
 
-Next, you can read in the astral data using the astralPlane S4 Object class, which organizes all the analysis data into different slots in the object that can be accessed using the @ symbol. 
+7) Next, you can read in the astral data using the astralPlane S4 Object class, which organizes all the analysis data into different slots in the object that can be accessed using the @ symbol. 
 
 
 ```
@@ -144,5 +144,40 @@ outgroups: a vector of outgroups to root the tree
 tip.length: arbitrary value for the terminal tip lengths, Astral does not compute this
 ```
 
+8) Finally, you can plot your results using the astralProjection function. You give the function the astralPlane object from the previous step, and select your settings for plotting, and what you would like to plot. An example plot is provided in the main Github repository. 
+
+```
+astralProjection(astral.plane = astral.data,
+                 local.posterior = TRUE,
+                 pie.plot = "qscore",
+                 save.file = "example_plot.pdf",
+                 pie.colors = c("purple", "blue", "green"),
+                 node.color.text = c("white"),
+                 node.color.bg = c("black"),
+                 tip.label.size = 0.75,
+                 pie.chart.size = 1)
+```
+
+
+Parameter explanations: 
+
+```
+astral.plane: AstralPlane S4 object of data generated from AstralPlane function
+local.posterior: plot the local posterior support?
+pie.plot: select one to plot: 'qscore' the quartet support or 'genetree' proportion of gene trees that support a branch
+save.file: if you wish to save to file, put file name. Saves as PDF
+pie.colors: select three colors to plot your pie.plot
+node.color.text: if local.posterior = TRUE, select the color of posterior support text
+node.color.bg: if local.posterior = TRUE, select the color of posterior support background
+tip.label.size: size of the tip labels, passed to cex in plotting function
+pie.chart.size: size of pie chart, passed to edgelabel plotting function
+
+```
+
+
+# Mini-Vingette: Usage and many dataset example 
+
+
+Coming soon!
 
 
