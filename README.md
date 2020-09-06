@@ -4,7 +4,9 @@ R Package For Preparing, Running, Analyzing and Plotting from the Species Tree P
 
 This R package is meant to facilitate ASTRAL-III analyses and provide easy R plotting. The package helps prepare analyses from a folder of gene trees, runs astral from R, and creates a new S4 object type "AstralPlane" for easily analyzing the output from ASTRAL-III. The packageprovides several different types of plots, from pie charts on phylogenetic trees representing the quartet frequencies to plotting the gene tree frequencies as far plots. 
 
-This package is still in beta testing phase, so if you find any issues with something not working, or you would like features to be added, go to issues in the top menu bar and submit them. 
+This package is still in beta testing phase, and more features and expanded functionality will be added in the future. Now, the package can run a standard ASTRAL-III analysis, read in the analysis results, and create pie-chart tree plots. 
+
+If you find any issues with something not working, or you would like features to be added, go to issues in the top menu bar and submit them. 
 
 For now, you can cite the R package by linking to this GitHub if you use it. 
 
@@ -36,7 +38,71 @@ And you should be done!
 
 # Usage and examples 
 
-I have included an R script in the main repository with some examples. They are summarized here also. 
+I have included an R script in the main repository with some examples. It is also described here in detail. 
+
+1) first load in your R packages.
+
+```
+library(ape)
+library(stringr)
+library(devtools)
+library(AstralPlane)
+
+```
+
+2) You will want a character variable that includes your full path to the astral jar file. NOTE: if you move this file, you will need to move the lib/ directory along with it, as astral depends on it. 
+
+
+```
+astral.path = "/usr/local/bin/Astral-5-14/astral.5.14.2.jar"
+```
+
+3)Setup your working directory and create if necessary
+
+```
+work.dir = "/Test_Astral"
+dir.create(work.dir)
+setwd(work.dir)
+```
+
+4) Next, this step will walk through a single dataset example. 
+
+First, you will want to add a character variable with the path to your gene tree directory. The gene trees here were generated using IQTree and the script should work with other tree types as well, as long as they have branch lengths and support values. Also indicate your outgroups for rooting the tree later. Finally, the output name can be put in a variable or directly entered, your choice. 
+
+```
+tree.dir = "/Trees/Gene_Trees/trimmed_exons"
+outgroups = c("Species_A", "Species_B")
+save.name = "test-dataset"
+
+```
+
+Second, the setupAstral function is used to take your folder of gene trees, apply some filters to the gene trees, and then save them in a single file that can be read by ASTRAL-III. 
+
+Parameter explanations: 
+
+genetree.folder: a folder of genetrees to prepare for astral analyses
+output.name: the save name for your concatenated gene tree file
+overwrite: whether to overwrite an existing dataset
+taxa.remove: species that you would like removed from each gene tree
+min.n.samples: the minimum number of samples to keep a gene tree
+min.sample.prop: the minimum proportion of samples to keep a gene tree
+make.polytomy: whether to collapse poorly supported nodes into polytomies
+polytomy.limit: if make.polytomy = TRUE, the threshold value for node collapsing
+
+
+```
+setupAstral(genetree.folder = tree.dir,
+            output.name = save.name,
+            min.n.samples = 4,
+            min.sample.prop = 0,
+            make.polytomy = TRUE,
+            polytomy.limit = 10)
+```
+
+
+
+
+
 
 
 
