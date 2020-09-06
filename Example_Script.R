@@ -4,9 +4,9 @@
 
 #Install ape and stringr the tradiational way
 install.packages(c("ape", "stringr"))
-
 #Install devtools
 install.packages("devtools")
+#Install AstralPlane
 devtools::install_github("chutter/AstralPlane")
 
 ###############################################################################

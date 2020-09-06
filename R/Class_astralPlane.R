@@ -7,7 +7,7 @@
 ##' @slot phylo phylo object for tree structure
 ##' @slot nodeData newick tree string
 ##' @slot edgeData associated data
-##' @importClassesFrom ape
+##' @importClassesFrom ape stringr
 ##' @exportClass astralPlane
 ##' @keywords classes
 
