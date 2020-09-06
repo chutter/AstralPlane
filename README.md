@@ -21,6 +21,26 @@ The package has two R package dependencies:
   ape (>= 5.0)
   stringr (>= 1.4)
   
-And to install AstralPlane, you should use the R package devtools. 
+And to install AstralPlane, you can use the R package devtools. Here are step-by-step instructions for installation:
+
+1) Install devtools by typing "install.packages(devtools)" in your R console. 
+
+2) Install AstralPlane by typing in your R console: "devtools::install_github("chutter/AstralPlane")"
+
+3) Devtools will ask you to install the package dependecies (ape and stringr), select "Yes". If devtools asks you to update packages, you may choose to do so. I would recommend not to install packages from source if devtools asks you. Ape is problemic from source and I could not get it to install on my machine. If devtools is still giving you trouble, you can install the dependencies with "install.packages(c("ape", "stringr"))". Then rerun Step 2 and skip package updates. 
+
+4) Devtools should finish and say the package loaded properly. Load the package with library(AstralPlane). 
+
+And you should be done! 
+
+
+# Usage and examples 
+
+I have included an R script in the main repository with some examples. They are summarized here also. 
+
+
+
+
+
 
 
