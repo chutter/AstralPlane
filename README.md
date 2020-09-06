@@ -127,11 +127,22 @@ multi.thread: whether to use Astral-MP multithreading or not.
 memory: memory value to be passed to java. Should be in "Xg" format, X = an integer
 ```
 
+Next, you can read in the astral data using the astralPlane S4 Object class, which organizes all the analysis data into different slots in the object that can be accessed using the @ symbol. 
 
 
+```
+astral.data = astralPlane(astral.tree = save.name,
+                          outgroups = outgroups,
+                          tip.length = 1)
+```
 
+Parameter explanations: 
 
-
+```
+astral.tree: phylogenetic tree from ape read.tree
+outgroups: a vector of outgroups to root the tree
+tip.length: arbitrary value for the terminal tip lengths, Astral does not compute this
+```
 
 
 
