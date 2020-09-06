@@ -34,6 +34,8 @@ astralPlane = function(astral.tree = NULL,
 
   if(is.null(outgroups) == TRUE){ stop("Please provide outgroups.") }
 
+  astral.tree = paste0(astral.tree, "_astral.tre")
+
   #Read in tree and root it properly
   a.tree = ape::read.tree(astral.tree)
   a.tree = ape::unroot(a.tree)
