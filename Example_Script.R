@@ -62,7 +62,6 @@ runAstral(input.genetrees = save.name,
 
 #Read in the astral data and tree and organize it into different slots
 astral.data = astralPlane(astral.tree = save.name,
-                          astral.t = 2,
                           outgroups = outgroups,
                           tip.length = 1)
 

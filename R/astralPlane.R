@@ -1,4 +1,4 @@
-#' @title AstralPlane
+#' @title astralPlane
 #'
 #' @description Function for reading data into the astralPlane format
 #'
@@ -23,14 +23,6 @@
 astralPlane = function(astral.tree = NULL,
                        outgroups = NULL,
                        tip.length = 1){
-
-  #Sets the class for the phylogenetic object
-  setOldClass(Classes = "phylo")
-
-  setClass("astralPlane", slots=list(samples="character",
-                                tree = "phylo",
-                                node.data="data.frame",
-                                edge.data="data.frame"))
 
   if(is.null(outgroups) == TRUE){ stop("Please provide outgroups.") }
 
@@ -80,16 +72,16 @@ astralPlane = function(astral.tree = NULL,
   node.data$EN = round(as.numeric(gsub("EN=", "", node.data$EN)), 3)
 
   spp.tree$edge.length[is.na(spp.tree$edge.length) == T] = tip.length
-  edge.node = astralPlane::edgeLengthTable(tree = spp.tree, tips = T)
+  edge.node = edgeLengthTable(tree = spp.tree, tips = T)
 
   raw.tree = spp.tree
   raw.tree$node.label = NULL
   #Makes new S4 class out of data
   astral.object = new("astralPlane",
       samples = raw.tree$tip.label,
-      tree = raw.tree,
-      node.data = node.data,
-      edge.data = edge.node)
+      phylo = raw.tree,
+      nodeData = node.data,
+      edgeData = edge.node)
 
   return(astral.object)
 

@@ -2,7 +2,7 @@
 % Please edit documentation in R/astralPlane.R
 \name{astralPlane}
 \alias{astralPlane}
-\title{AstralPlane}
+\title{astralPlane}
 \usage{
 astralPlane(astral.tree = NULL, outgroups = NULL, tip.length = 1)
 }
