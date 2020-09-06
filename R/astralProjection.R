@@ -81,7 +81,7 @@ astralProjection = function(astral.plane = NULL,
   #Saves file
   if(is.null(save.file) != T){ pdf(file = save.file, width = 10, height = 8) }
 
-  ape::plot(astral.plane@phylo, cex = tip.label.size)
+  ape::plot.phylo(astral.plane@phylo, cex = tip.label.size)
   ape::edgelabels(edge = merge.data$edge,
              pie = as.matrix(merge.data[,2:4]),
              piecol = pie.colors, cex = pie.chart.size)
