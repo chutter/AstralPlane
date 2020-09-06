@@ -81,12 +81,19 @@ Second, the setupAstral function is used to take your folder of gene trees, appl
 Parameter explanations: 
 
 genetree.folder: a folder of genetrees to prepare for astral analyses
+
 output.name: the save name for your concatenated gene tree file
+
 overwrite: whether to overwrite an existing dataset
+
 taxa.remove: species that you would like removed from each gene tree
+
 min.n.samples: the minimum number of samples to keep a gene tree
+
 min.sample.prop: the minimum proportion of samples to keep a gene tree
+
 make.polytomy: whether to collapse poorly supported nodes into polytomies
+
 polytomy.limit: if make.polytomy = TRUE, the threshold value for node collapsing
 
 
