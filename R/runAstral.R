@@ -35,7 +35,7 @@
 #'             make.polytomy = TRUE,
 #'             polytomy.limit = 10)
 #'
-#' runAstral(input.genetrees = "test-dataset_genetrees.tre"
+#' runAstral(input.genetrees = save.name,
 #'           output.name = save.name,
 #'           astral.path = astral.path,
 #'           astral.t = 2,
@@ -59,6 +59,8 @@ runAstral = function(input.genetrees = NULL,
   if (is.null(input.genetrees) == TRUE){ stop("No gene tree file provided.") }
   if (is.null(output.name) == TRUE){ stop("No output save name provided.") }
   if (is.null(astral.path) == TRUE){ stop("A full path to your astral JAR file is needed.") }
+
+  input.genetrees = paste0(input.genetrees, "_genetrees.tre")
 
   if (multi.thread == TRUE){
 

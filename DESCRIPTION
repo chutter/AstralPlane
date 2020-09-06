@@ -1,5 +1,5 @@
 Package: AstralPlane
-Title: R Package For Preparing, Running, Analyzing and Plotting from the species tree program ASTRAL-III
+Title: R Package For Preparing, Running, Analyzing and Plotting for the Species Tree Program ASTRAL-III
 Version: 0.1.0
 Authors@R: 
     person(given = "Carl",

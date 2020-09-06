@@ -53,7 +53,7 @@ setupAstral(genetree.folder = genetree.folder,
             make.polytomy = TRUE,
             polytomy.limit = 10)
 
-runAstral(input.genetrees = "test-dataset_genetrees.tre"
+runAstral(input.genetrees = save.name,
           output.name = save.name,
           astral.path = astral.path,
           astral.t = 2,
