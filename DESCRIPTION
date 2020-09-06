@@ -1,0 +1,23 @@
+Package: AstralPlane
+Title: R Package For Preparing, Running, Analyzing and Plotting from the species tree program ASTRAL-III
+Version: 0.1.0
+Authors@R: 
+    person(given = "Carl",
+           family = "Hutter",
+           role = c("aut", "cre"),
+           email = "car.hutter@gmail.com",
+           comment = c(ORCID = "0000-0001-6381-6339"))
+Description: This R package is meant to facilitate ASTRAL-III analyses and provide easy R plotting. 
+	The package helps prepare analyses from a folder of gene trees, runs astral from R, and creates 
+	a new S4 object type "AstralPlane" for easily analyzing the output from ASTRAL-III. The package
+	provides several different types of plots, from pie charts on phylogenetic trees representing
+	the quartet frequencies to plotting the gene tree frequencies as far plots. 
+Depends: R (>= 3.5.1)
+License: `use_gpl3_license()`
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.0
+Imports:
+        ape (>= 5.0),
+        stringr (>= 1.4)
