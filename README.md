@@ -10,6 +10,12 @@ If you find any issues with something not working, or you would like features to
 
 For now, you can cite the R package by linking to this GitHub if you use it. 
 
+Features coming soon:
+  1) Branch barplots (alternative to pie charts)
+  2) Occupancy plots
+  3) Discordance analyses
+  4) Relative gene tree frequency analysis
+
 
 # Installation
 
