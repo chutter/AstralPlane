@@ -19,7 +19,7 @@ ASTRAL-III is available on GitHub here: https://github.com/smirarab/ASTRAL
 
 Instructions for installation and testing ASTRAL-III are included therein, and once it is up and running AstralPlane should be functional! 
 
-The package has two R package dependencies: 
+The package has two R package dependencies, which are treated as imports (i.e. you need them installed, but library(ape) and library(stringr) not needed: 
   ape (>= 5.0)
   stringr (>= 1.4)
   
@@ -40,12 +40,10 @@ And you should be done!
 
 I have included an R script in the main repository with some examples. It is also described here in detail. 
 
-1) first load in your R packages.
+1) first install and load the R package. Its a good idea to install new (or check) every time as this package is being updated frequently. 
 
 ```
-library(ape)
-library(stringr)
-library(devtools)
+devtools::install_github("chutter/AstralPlane")
 library(AstralPlane)
 
 ```
