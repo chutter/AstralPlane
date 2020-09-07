@@ -12,10 +12,6 @@ devtools::install_github("chutter/AstralPlane")
 ###############################################################################
 #Load packages
 ###############
-
-library(ape)
-library(stringr)
-library(devtools)
 library(AstralPlane)
 
 

@@ -87,12 +87,14 @@ setupAstral = function(genetree.folder = NULL,
       next
     }#end min sample check
 
-    #Skips if less than the desire sampling proportion
-    if (length(temp.tree$tip.label)/max.taxa < min.sample.prop){
-      print(paste0(gene.trees[x], " skipped, less than ",
-                   min.sample.prop, " proportion samples."))
-      next
-    }#end min sample check
+    if (is.null(min.sample.prop) != TRUE){
+      #Skips if less than the desire sampling proportion
+      if (length(temp.tree$tip.label)/max.taxa < min.sample.prop){
+        print(paste0(gene.trees[x], " skipped, less than ",
+                     min.sample.prop, " proportion samples."))
+        next
+      }#end min sample check
+    }
 
     #Does the polytomy check
     if (make.polytomy == TRUE){
