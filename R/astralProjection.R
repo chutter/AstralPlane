@@ -89,8 +89,8 @@ astralProjection = function(astral.plane = NULL,
   if(local.posterior == TRUE){
     ape::nodelabels(text = round(merge.data$pp1, 2),
                node = merge.data$node,
-               col = "white",
-               bg = "black",
+               col = node.color.text,
+               bg = node.color.bg,
                adj = c(-0.3, 0.3),
                cex = tip.label.size)
   }#end posterior

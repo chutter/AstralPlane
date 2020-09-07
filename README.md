@@ -131,9 +131,9 @@ memory: memory value to be passed to java. Should be in "Xg" format, X = an inte
 
 
 ```
-astral.data = astralPlane(astral.tree = save.name,
-                          outgroups = outgroups,
-                          tip.length = 1)
+astral.data = createAstralPlane(astral.tree = save.name,
+                                outgroups = outgroups,
+                                tip.length = 1)
 ```
 
 Parameter explanations: 

@@ -1,4 +1,4 @@
-#' @title astralPlane
+#' @title createAstralPlane
 #'
 #' @description Function for reading data into the astralPlane format
 #'
@@ -77,7 +77,7 @@ astralPlane = function(astral.tree = NULL,
   raw.tree = spp.tree
   raw.tree$node.label = NULL
   #Makes new S4 class out of data
-  astral.object = new("astralPlane",
+  astral.object = new("AstralPlane",
       samples = raw.tree$tip.label,
       phylo = raw.tree,
       nodeData = node.data,
