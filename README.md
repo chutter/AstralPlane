@@ -36,7 +36,7 @@ And to install AstralPlane, you can use the R package devtools. Here are step-by
 And you should be done! 
 
 
-# Mini-Vingette: Usage and single dataset example 
+# Mini-Vignette: Usage and single dataset example 
 
 I have included an R script in the main repository with some examples. It is also described here in detail. 
 
@@ -173,7 +173,7 @@ pie.chart.size: size of pie chart, passed to edgelabel plotting function
 ```
 
 
-# Mini-Vingette: Usage and many dataset example 
+# Mini-Vignette: Usage and many dataset example 
 
 
 Coming soon!
