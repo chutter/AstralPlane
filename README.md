@@ -4,11 +4,17 @@ R Package For Preparing, Running, Analyzing and Plotting from the Species Tree P
 
 This R package is meant to facilitate ASTRAL-III analyses and provide easy R plotting. The package helps prepare analyses from a folder of gene trees, runs astral from R, and creates a new S4 object type "AstralPlane" for easily analyzing the output from ASTRAL-III. The packageprovides several different types of plots, from pie charts on phylogenetic trees representing the quartet frequencies to plotting the gene tree frequencies as far plots. 
 
-This package is still in beta testing phase, and more features and expanded functionality will be added in the future. Now, the package can run a standard ASTRAL-III analysis, read in the analysis results, and create pie-chart tree plots. 
+This package is still in beta testing phase, and more features and expanded functionality will be added in the future. Now, the package can run a standard ASTRAL-III analysis, read in the analysis results, and create pie-chart tree plots. The goal is for this R package to have the same functionality as DiscoVista (https://github.com/esayyari/DiscoVista) plus additional tools, plotting, and quality of life improvements, but within the R environment. 
 
 If you find any issues with something not working, or you would like features to be added, go to issues in the top menu bar and submit them. 
 
 For now, you can cite the R package by linking to this GitHub if you use it. 
+
+Features coming soon:
+  1) Branch barplots (alternative to pie charts)
+  2) Occupancy plots
+  3) Discordance analyses
+  4) Relative gene tree frequency analysis
 
 
 # Installation
@@ -19,7 +25,7 @@ ASTRAL-III is available on GitHub here: https://github.com/smirarab/ASTRAL
 
 Instructions for installation and testing ASTRAL-III are included therein, and once it is up and running AstralPlane should be functional! 
 
-The package has two R package dependencies: 
+The package has two R package dependencies, which are treated as imports (i.e. you need them installed, but library(ape) and library(stringr) not needed: 
   ape (>= 5.0)
   stringr (>= 1.4)
   
@@ -36,16 +42,14 @@ And to install AstralPlane, you can use the R package devtools. Here are step-by
 And you should be done! 
 
 
-# Mini-Vingette: Usage and single dataset example 
+# Mini-Vignette: Usage and single dataset example 
 
 I have included an R script in the main repository with some examples. It is also described here in detail. 
 
-1) first load in your R packages.
+1) first install and load the R package. Its a good idea to install new (or check) every time as this package is being updated frequently. 
 
 ```
-library(ape)
-library(stringr)
-library(devtools)
+devtools::install_github("chutter/AstralPlane")
 library(AstralPlane)
 
 ```
@@ -175,7 +179,7 @@ pie.chart.size: size of pie chart, passed to edgelabel plotting function
 ```
 
 
-# Mini-Vingette: Usage and many dataset example 
+# Mini-Vignette: Usage and many dataset example 
 
 
 Coming soon!
