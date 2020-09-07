@@ -15,6 +15,7 @@ Features coming soon:
   2) Occupancy plots
   3) Discordance analyses
   4) Relative gene tree frequency analysis
+  5) IQTree concordance factor interface and import
 
 
 # Installation
