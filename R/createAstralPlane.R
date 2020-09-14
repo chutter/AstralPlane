@@ -26,10 +26,12 @@ createAstralPlane = function(astral.tree = NULL,
 
   if(is.null(outgroups) == TRUE){ stop("Please provide outgroups.") }
 
-  astral.tree = paste0(astral.tree, "_astral.tre")
+  #Reads in tree
+  astral.tree.name = paste0(astral.tree, "_astral.tre")
+  if (file.exists(astral.tree.name) == FALSE){ astral.tree.name = astral.tree }
 
   #Read in tree and root it properly
-  a.tree = ape::read.tree(astral.tree)
+  a.tree = ape::read.tree(astral.tree.name)
   a.tree = ape::unroot(a.tree)
   if (ape::is.monophyletic(a.tree, outgroups) == T){
     spp.tree = ape::root(phy = a.tree, outgroup = outgroups, resolve.root = T)
