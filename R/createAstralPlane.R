@@ -20,9 +20,9 @@
 #' @export
 
 
-astralPlane = function(astral.tree = NULL,
-                       outgroups = NULL,
-                       tip.length = 1){
+createAstralPlane = function(astral.tree = NULL,
+                             outgroups = NULL,
+                             tip.length = 1){
 
   if(is.null(outgroups) == TRUE){ stop("Please provide outgroups.") }
 
@@ -78,10 +78,10 @@ astralPlane = function(astral.tree = NULL,
   raw.tree$node.label = NULL
   #Makes new S4 class out of data
   astral.object = new("AstralPlane",
-      samples = raw.tree$tip.label,
-      phylo = raw.tree,
-      nodeData = node.data,
-      edgeData = edge.node)
+                      samples = raw.tree$tip.label,
+                      phylo = raw.tree,
+                      nodeData = node.data,
+                      edgeData = edge.node)
 
   return(astral.object)
 
