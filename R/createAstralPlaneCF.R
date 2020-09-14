@@ -1,8 +1,10 @@
-#' @title createAstralPlane
+#' @title createAstralPlaneCF
 #'
 #' @description Function for reading data into the astralPlane format
 #'
-#' @param astral.tree phylogenetic tree from ape read.tree
+#' @param astral.tree file path to your tree
+#'
+#' @param cf.file.name prefix file name of the file for concordance factors
 #'
 #' @param outgroups a vector of outgroups to root the tree
 #'
@@ -20,15 +22,14 @@
 #' @export
 
 
-createAstralPlane = function(astral.tree = NULL,
-                             outgroups = NULL,
-                             tip.length = 1){
+createAstralPlaneCF = function(cf.file.name = NULL,
+                               outgroups = NULL,
+                               tip.length = 1) {
 
   if(is.null(outgroups) == TRUE){ stop("Please provide outgroups.") }
 
   #Reads in tree
-  astral.tree.name = paste0(astral.tree, "_astral.tre")
-  if (file.exists(astral.tree.name) == FALSE){ astral.tree.name = astral.tree }
+  astral.tree.name = paste0(cf.file.name, ".cf.branch")
 
   #Read in tree and root it properly
   a.tree = ape::read.tree(astral.tree.name)
@@ -38,7 +39,9 @@ createAstralPlane = function(astral.tree = NULL,
   } else{ spp.tree = ape::root(phy = a.tree, outgroup = outgroups, resolve.root = T) }
 
   #Formats the node data
-  node.vals = stringr::str_split(pattern = ";", spp.tree$node.label)
+  con.data = readConcordance(file.name = file.name)
+  node.vals = stringr::str_split(pattern = ";", con.data$Label)
+
   #node.vals = node.vals[node.vals != ""]
   #node.vals = node.vals[-1]
   node.data = as.data.frame(do.call(rbind, node.vals))
@@ -47,10 +50,7 @@ createAstralPlane = function(astral.tree = NULL,
                           "QC", "EN")
 
   #Adds in node number
-  node.data = cbind(node = (length(spp.tree$tip.label)+1):(length(spp.tree$tip.label)+spp.tree$Nnode), node.data)
-  node.data[node.data == ""] = NA
-  node.data[node.data == "Root"] = NA
-  node.data[1,1] = "Root"
+  node.data = cbind(node = con.data$ID, node.data)
 
   #Node data
   node.data$q1 = round(as.numeric(gsub("q1=", "", node.data$q1)), 3)
@@ -71,17 +71,20 @@ createAstralPlane = function(astral.tree = NULL,
 
   spp.tree$edge.length[is.na(spp.tree$edge.length) == T] = tip.length
   edge.node = edgeLengthTable(tree = spp.tree, tips = T)
+  con.data$Dataset = NULL
+  con.data$Label = NULL
 
   raw.tree = spp.tree
   raw.tree$node.label = node.data$node
+
   #Makes new S4 class out of data
   astral.object = new("AstralPlane",
                       samples = raw.tree$tip.label,
                       phylo = raw.tree,
                       nodeData = node.data,
-                      edgeData = edge.node)
+                      edgeData = edge.node,
+                      concordanceFactorData = con.data)
 
   return(astral.object)
 
-} #end function
-
+}#end function

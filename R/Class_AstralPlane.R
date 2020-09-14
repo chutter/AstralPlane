@@ -19,7 +19,7 @@ setClass("AstralPlane", slots=list(samples="character",
                               phylo = "phylo",
                               nodeData="data.frame",
                               edgeData="data.frame",
-                              ConcordanceFactorData = "data.frame"))
+                              concordanceFactorData = "data.frame"))
 
 ##' @importFrom ape
 ##' @export
