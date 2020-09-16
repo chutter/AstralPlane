@@ -20,7 +20,7 @@ readConcordance = function(file.name = NULL) {
 
   #### *** MAKE S4 Object
 
-  header.names = c("ID","gCF","gCF_N","gDF1", "gDF1_N", "gDF2", "gDF2_N",
+  header.names = c("node","gCF","gCF_N","gDF1", "gDF1_N", "gDF2", "gDF2_N",
                    "gDFP", "gDFP_N", "gN", "sCF",	"sCF_N",	"sDF1",	"sDF1_N",
                    "sDF2",	"sDF2_N",	"sN",	"Label", "Length")
 
