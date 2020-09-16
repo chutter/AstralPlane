@@ -39,7 +39,7 @@ createAstralPlaneCF = function(cf.file.name = NULL,
   } else{ spp.tree = ape::root(phy = a.tree, outgroup = outgroups, resolve.root = T) }
 
   #Formats the node data
-  con.data = readConcordance(file.name = file.name)
+  con.data = readConcordance(file.name = cf.file.name)
   node.vals = stringr::str_split(pattern = ";", con.data$Label)
 
   #node.vals = node.vals[node.vals != ""]
@@ -50,7 +50,7 @@ createAstralPlaneCF = function(cf.file.name = NULL,
                           "QC", "EN")
 
   #Adds in node number
-  node.data = cbind(node = con.data$ID, node.data)
+  node.data = cbind(node = con.data$node, node.data)
 
   #Node data
   node.data$q1 = round(as.numeric(gsub("q1=", "", node.data$q1)), 3)
@@ -79,6 +79,7 @@ createAstralPlaneCF = function(cf.file.name = NULL,
 
   #Makes new S4 class out of data
   astral.object = new("AstralPlane",
+                      fileName = cf.file.name,
                       samples = raw.tree$tip.label,
                       phylo = raw.tree,
                       nodeData = node.data,
