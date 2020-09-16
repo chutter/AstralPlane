@@ -45,29 +45,35 @@ createAstralPlaneCF = function(cf.file.name = NULL,
   #node.vals = node.vals[node.vals != ""]
   #node.vals = node.vals[-1]
   node.data = as.data.frame(do.call(rbind, node.vals))
-  node.data$V1 = gsub("\\[", "", node.data$V1)
-  colnames(node.data) = c("q1", "q2", "q3", "f1", 'f2', "f3", "pp1", "pp2", "pp3",
-                          "QC", "EN")
 
-  #Adds in node number
-  node.data = cbind(node = con.data$node, node.data)
+  if (ncol(node.data) != 1){
 
-  #Node data
-  node.data$q1 = round(as.numeric(gsub("q1=", "", node.data$q1)), 3)
-  node.data$q2 = round(as.numeric(gsub("q2=", "", node.data$q2)), 3)
-  node.data$q3 = round(as.numeric(gsub("q3=", "", node.data$q3)), 3)
+    node.data$V1 = gsub("\\[", "", node.data$V1)
+    colnames(node.data) = c("q1", "q2", "q3", "f1", 'f2', "f3", "pp1", "pp2", "pp3",
+                            "QC", "EN")
 
-  node.data$f1 = round(as.numeric(gsub("f1=", "", node.data$f1)), 3)
-  node.data$f2 = round(as.numeric(gsub("f2=", "", node.data$f2)), 3)
-  node.data$f3 = round(as.numeric(gsub("f3=", "", node.data$f3)), 3)
+    #Adds in node number
+    node.data = cbind(node = con.data$node, node.data)
 
-  node.data$pp1 = round(as.numeric(gsub("pp1=", "", node.data$pp1)), 3)
-  node.data$pp2 = round(as.numeric(gsub("pp2=", "", node.data$pp2)), 3)
-  node.data$pp3 = round(as.numeric(gsub("pp3=", "", node.data$pp3)), 3)
+    #Node data
+    node.data$q1 = round(as.numeric(gsub("q1=", "", node.data$q1)), 3)
+    node.data$q2 = round(as.numeric(gsub("q2=", "", node.data$q2)), 3)
+    node.data$q3 = round(as.numeric(gsub("q3=", "", node.data$q3)), 3)
 
-  node.data$EN = gsub("].*", "", node.data$EN)
-  node.data$EN = round(as.numeric(gsub("EN=", "", node.data$EN)), 3)
-  node.data$QC = round(as.numeric(gsub("QC=", "", node.data$QC)), 3)
+    node.data$f1 = round(as.numeric(gsub("f1=", "", node.data$f1)), 3)
+    node.data$f2 = round(as.numeric(gsub("f2=", "", node.data$f2)), 3)
+    node.data$f3 = round(as.numeric(gsub("f3=", "", node.data$f3)), 3)
+
+    node.data$pp1 = round(as.numeric(gsub("pp1=", "", node.data$pp1)), 3)
+    node.data$pp2 = round(as.numeric(gsub("pp2=", "", node.data$pp2)), 3)
+    node.data$pp3 = round(as.numeric(gsub("pp3=", "", node.data$pp3)), 3)
+
+    node.data$EN = gsub("].*", "", node.data$EN)
+    node.data$EN = round(as.numeric(gsub("EN=", "", node.data$EN)), 3)
+    node.data$QC = round(as.numeric(gsub("QC=", "", node.data$QC)), 3)
+  } else {
+    node.data = data.frame(node = con.data$node, label = node.data$V1)
+  }
 
   spp.tree$edge.length[is.na(spp.tree$edge.length) == T] = tip.length
   edge.node = edgeLengthTable(tree = spp.tree, tips = T)
