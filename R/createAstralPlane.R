@@ -76,6 +76,7 @@ createAstralPlane = function(astral.tree = NULL,
   raw.tree$node.label = node.data$node
   #Makes new S4 class out of data
   astral.object = new("AstralPlane",
+                      fileName = astral.tree.name,
                       samples = raw.tree$tip.label,
                       phylo = raw.tree,
                       nodeData = node.data,
