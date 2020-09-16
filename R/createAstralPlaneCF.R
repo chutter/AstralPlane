@@ -36,14 +36,11 @@ createAstralPlaneCF = function(cf.file.name = NULL,
   a.tree = ape::unroot(a.tree)
   if (ape::is.monophyletic(a.tree, outgroups) == T){
     spp.tree = ape::root(phy = a.tree, outgroup = outgroups, resolve.root = T)
-  } else{ spp.tree = ape::root(phy = a.tree, outgroup = outgroups, resolve.root = T) }
+  } else{ spp.tree = ape::root(phy = a.tree, outgroup = outgroups[1], resolve.root = T) }
 
   #Formats the node data
   con.data = readConcordance(file.name = cf.file.name)
   node.vals = stringr::str_split(pattern = ";", con.data$Label)
-
-  #node.vals = node.vals[node.vals != ""]
-  #node.vals = node.vals[-1]
   node.data = as.data.frame(do.call(rbind, node.vals))
 
   if (ncol(node.data) != 1){
