@@ -98,10 +98,15 @@ setupAstral = function(genetree.folder = NULL,
 
     #Does the polytomy check
     if (make.polytomy == TRUE){
-      #Find and collapse nodes with bl close to 0 from above
-      temp.tree$node.label[temp.tree$node.label == ""] = "100"
-      new.tree = AstralPlane::makePolytomy(tree = temp.tree, polytomy.limit = polytomy.limit)
-    }
+      #Checks for node labels
+      if (length(temp.tree$node.label) != 0){
+        #Find and collapse nodes with bl close to 0 from above
+        temp.tree$node.label[temp.tree$node.label == ""] = "100"
+        new.tree = AstralPlane::makePolytomy(tree = temp.tree, polytomy.limit = polytomy.limit)
+      } else {
+        new.tree = temp.tree
+      }#end else
+    }#end polytomy
 
     #writes tree to a single file
     ape::write.tree(new.tree, file = paste0(output.name, "_genetrees.tre"), append = T)
