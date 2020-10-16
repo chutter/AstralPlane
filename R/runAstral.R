@@ -60,7 +60,7 @@ runAstral = function(input.genetrees = NULL,
   if (is.null(output.name) == TRUE){ stop("No output save name provided.") }
   if (is.null(astral.path) == TRUE){ stop("A full path to your astral JAR file is needed.") }
 
-  input.genetrees = paste0(input.genetrees, "_genetrees.tre")
+  input.genetrees = paste0(input.genetrees)
 
   if (multi.thread == TRUE){
 
