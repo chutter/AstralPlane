@@ -99,14 +99,14 @@ batchAstral = function(genetree.datasets = NULL,
     #Moves to new folder
     out.file = paste0(dataset.name, "_genetrees.tre")
 
-    AstralPlane::runAstral(input.genetrees = paste0(output.dir, "/", out.file),
-              astral.t = astral.t,
-              output.name = paste0(output.dir, "/", dataset.name),
-              quiet = quiet,
-              astral.path = astral.path,
-              memory = memory,
-              multi.thread = TRUE,
-              load.tree = FALSE)
+    createAstralPlane::runAstral(input.genetrees = paste0(output.dir, "/", out.file),
+                                 astral.t = astral.t,
+                                 output.name = paste0(output.dir, "/", dataset.name),
+                                 quiet = quiet,
+                                 astral.path = astral.path,
+                                 memory = memory,
+                                 multi.thread = TRUE,
+                                 load.tree = FALSE)
 
     print(paste0("Finished ", dataset.name, "!"))
 
