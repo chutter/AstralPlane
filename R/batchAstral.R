@@ -96,7 +96,7 @@ batchAstral = function(genetree.datasets = NULL,
   }#end overwrite
 
   #Loops through and runs each datasset
-  dataset.dirs = list.dirs(genetree.folder, recursive = FALSE)
+  dataset.dirs = list.dirs(genetree.datasets, recursive = FALSE)
   for (x in 1:length(dataset.dirs)){
 
     dataset.name = gsub(".*/", "", dataset.dirs[x])
