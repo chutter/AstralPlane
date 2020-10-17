@@ -66,19 +66,19 @@ batchAstral = function(genetree.datasets = NULL,
                        multi.thread = TRUE,
                        memory = "1g") {
 
-  genetree.datasets = genetree.folder
-  astral.t = 2
-  output.dir = "shrew-datasets"
-  min.n.samples = 4
-  min.sample.prop = 0.1
-  taxa.remove = NULL
-  overwrite = TRUE
-  quiet = F
-  astral.path = astral.path
-  make.polytomy = TRUE
-  polytomy.limit = 10
-  multi.thread = TRUE
-  memory = "8g"
+  # genetree.datasets = genetree.folder
+  # astral.t = 2
+  # output.dir = "shrew-datasets"
+  # min.n.samples = 4
+  # min.sample.prop = 0.1
+  # taxa.remove = NULL
+  # overwrite = TRUE
+  # quiet = F
+  # astral.path = astral.path
+  # make.polytomy = TRUE
+  # polytomy.limit = 10
+  # multi.thread = TRUE
+  # memory = "8g"
 
   #Checks for missing stuff
   if (is.null(genetree.datasets) == TRUE){ stop("No gene tree folder provided.") }
