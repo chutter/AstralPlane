@@ -49,7 +49,7 @@ I have included an R script in the main repository with some examples. It is als
 
 1) first install and load the R package. Its a good idea to install new (or check) every time as this package is being updated frequently. 
 
-```
+```r
 devtools::install_github("chutter/AstralPlane")
 library(AstralPlane)
 
