@@ -35,15 +35,6 @@ astralRunner = function(concat.genetree.folder = NULL,
                         multi.thread = TRUE,
                         memory = "1g"){
 
-  concat.genetree.folder = "filtered-genetrees-concatenated"
-  output.dir = "filtered-astral"
-  overwrite = TRUE
-  astral.path = astral.path
-  astral.t = 2
-  quiet = FALSE
-  multi.thread = TRUE
-  memory = "8g"
-
   #Checks
   if (is.null(concat.genetree.folder) == TRUE){ stop("No gene trees provided.") }
   if (is.null(output.dir) == TRUE){ stop("No output save name provided.") }
@@ -66,12 +57,12 @@ astralRunner = function(concat.genetree.folder = NULL,
   for (x in 1:length(concat.genetrees)){
 
     #print(paste0("Running ", concat.genetrees[x], " through Astral ...."))
-    #concat.name = gsub("_genetrees.tre", "", concat.genetrees[x])
+    concat.name = gsub("_genetrees.tre", "", concat.genetrees[x])
     input.trees = paste0(concat.genetree.folder, "/", concat.genetrees[x])
-    out.dir = paste0(output.dir, "/", concat.name)
+    out.name = paste0(output.dir, "/", concat.name)
 
     runAstral(input.genetrees = input.trees,
-              output.name = out.dir,
+              output.name = out.name,
               astral.path = astral.path,
               astral.t = astral.t,
               quiet = quiet,
