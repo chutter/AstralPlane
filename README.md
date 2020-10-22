@@ -58,13 +58,13 @@ library(AstralPlane)
 2) You will want a character variable that includes your full path to the astral jar file. NOTE: if you move this file, you will need to move the lib/ directory along with it, as astral depends on it. 
 
 
-```
+```r
 astral.path = "/usr/local/bin/Astral-5-14/astral.5.14.2.jar"
 ```
 
 3)Setup your working directory and create if necessary
 
-```
+```r
 work.dir = "/Test_Astral"
 dir.create(work.dir)
 setwd(work.dir)
@@ -74,7 +74,7 @@ setwd(work.dir)
 
 First, you will want to add a character variable with the path to your gene tree directory. The gene trees here were generated using IQTree and the script should work with other tree types as well, as long as they have branch lengths and support values. Also indicate your outgroups for rooting the tree later. Finally, the output name can be put in a variable or directly entered, your choice. 
 
-```
+```r
 tree.dir = "/Trees/Gene_Trees/trimmed_exons"
 outgroups = c("Species_A", "Species_B")
 save.name = "test-dataset"
@@ -84,7 +84,7 @@ save.name = "test-dataset"
 5) the setupAstral function is used to take your folder of gene trees, apply some filters to the gene trees, and then save them in a single file that can be read by ASTRAL-III. This should take about a minute to run. 
 
 
-```
+```r
 setupAstral(genetree.folder = tree.dir,
             output.name = save.name,
             min.n.samples = 4,
@@ -95,7 +95,7 @@ setupAstral(genetree.folder = tree.dir,
 
 Parameter explanations: 
 
-```
+```r
 genetree.folder: a folder of genetrees to prepare for astral analyses
 output.name: the save name for your concatenated gene tree file
 overwrite: whether to overwrite an existing dataset
@@ -108,7 +108,7 @@ polytomy.limit: if make.polytomy = TRUE, the threshold value for node collapsing
 
 6) When the setup function finishes running, you can now run ASTRAL-III using the runAstral function. This uses the astral jar directly, and should a minute or two depending on your number of gene trees using multi-threading and around 10 without the multi-threading option. 
 
-```
+```r
 runAstral(input.genetrees = save.name,
           output.name = save.name,
           astral.path = astral.path,
@@ -121,7 +121,7 @@ runAstral(input.genetrees = save.name,
 
 Parameter explanations: 
 
-```
+```r
 input.genetrees: a file of genetrees from setupAstral
 output.name: the save name for the astral file
 astral.path: the absolute path to astral. Needed because astral needs it.
@@ -135,7 +135,7 @@ memory: memory value to be passed to java. Should be in "Xg" format, X = an inte
 7) Next, you can read in the astral data using the astralPlane S4 Object class, which organizes all the analysis data into different slots in the object that can be accessed using the @ symbol. 
 
 
-```
+```r
 astral.data = createAstralPlane(astral.tree = save.name,
                                 outgroups = outgroups,
                                 tip.length = 1)
@@ -143,7 +143,7 @@ astral.data = createAstralPlane(astral.tree = save.name,
 
 Parameter explanations: 
 
-```
+```r
 astral.tree: phylogenetic tree from ape read.tree
 outgroups: a vector of outgroups to root the tree
 tip.length: arbitrary value for the terminal tip lengths, Astral does not compute this
@@ -151,7 +151,7 @@ tip.length: arbitrary value for the terminal tip lengths, Astral does not comput
 
 8) Finally, you can plot your results using the astralProjection function. You give the function the astralPlane object from the previous step, and select your settings for plotting, and what you would like to plot. An example plot is provided in the main Github repository. 
 
-```
+```r
 astralProjection(astral.plane = astral.data,
                  local.posterior = TRUE,
                  pie.plot = "qscore",
@@ -166,7 +166,7 @@ astralProjection(astral.plane = astral.data,
 
 Parameter explanations: 
 
-```
+```r
 astral.plane: AstralPlane S4 object of data generated from AstralPlane function
 local.posterior: plot the local posterior support?
 pie.plot: select one to plot: 'qscore' the quartet support or 'genetree' proportion of gene trees that support a branch
