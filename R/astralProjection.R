@@ -49,8 +49,19 @@ astralProjection = function(astral.plane = NULL,
                             pie.colors = c("black", "grey", "white"),
                             node.color.text = c("white"),
                             node.color.bg = c("black"),
+                            node.label.size = 0.5,
                             tip.label.size = 1,
                             pie.chart.size = 1) {
+
+  # astral.plane = astral.data
+  # local.posterior = TRUE
+  # pie.plot = "qscore"
+  # save.file = paste0(astral.trees[i],"_summary.pdf")
+  # pie.colors = c("purple", "blue", "green")
+  # node.color.text = c("white")
+  # node.color.bg = c("black")
+  # tip.label.size = 0.4
+  # pie.chart.size = 0.3
 
   if (is.null(astral.plane) == TRUE){ stop("No data provided! Run astralPlane function first.") }
   if (length(pie.plot) == 2){ stop("Please pick 'qscore' or 'genetree' for pie plots") }
@@ -77,6 +88,7 @@ astralProjection = function(astral.plane = NULL,
 
   edge.red = astral.plane@edgeData[edge.no,]
   merge.data = merge(astral.plane@nodeData, astral.plane@edgeData, by.x = "node", by.y = "node2")
+  merge.data$node = as.numeric(merge.data$node)
 
   #Saves file
   if(is.null(save.file) != T){ pdf(file = save.file, width = 10, height = 8) }
@@ -86,13 +98,17 @@ astralProjection = function(astral.plane = NULL,
              pie = as.matrix(merge.data[,2:4]),
              piecol = pie.colors, cex = pie.chart.size)
 
+  pp.data = merge.data[1,]
+  pp.data[1,1] = pp.data[1,1] - 1
+  pp.data = rbind(pp.data, merge.data)
   if(local.posterior == TRUE){
-    ape::nodelabels(text = round(merge.data$pp1, 2),
-               node = merge.data$node,
+    ape::nodelabels(text = round(pp.data$pp1, 2),
+               node = pp.data$node,
                col = node.color.text,
                bg = node.color.bg,
                adj = c(-0.3, 0.3),
-               cex = tip.label.size)
+               cex = node.label.size)
+
   }#end posterior
 
   #Branch length legend
