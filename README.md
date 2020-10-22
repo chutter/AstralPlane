@@ -95,7 +95,7 @@ setupAstral(genetree.folder = tree.dir,
 
 Parameter explanations: 
 
-```r
+```
 genetree.folder: a folder of genetrees to prepare for astral analyses
 output.name: the save name for your concatenated gene tree file
 overwrite: whether to overwrite an existing dataset
@@ -121,7 +121,7 @@ runAstral(input.genetrees = save.name,
 
 Parameter explanations: 
 
-```r
+```
 input.genetrees: a file of genetrees from setupAstral
 output.name: the save name for the astral file
 astral.path: the absolute path to astral. Needed because astral needs it.
@@ -143,7 +143,7 @@ astral.data = createAstralPlane(astral.tree = save.name,
 
 Parameter explanations: 
 
-```r
+```
 astral.tree: phylogenetic tree from ape read.tree
 outgroups: a vector of outgroups to root the tree
 tip.length: arbitrary value for the terminal tip lengths, Astral does not compute this
@@ -166,7 +166,7 @@ astralProjection(astral.plane = astral.data,
 
 Parameter explanations: 
 
-```r
+```
 astral.plane: AstralPlane S4 object of data generated from AstralPlane function
 local.posterior: plot the local posterior support?
 pie.plot: select one to plot: 'qscore' the quartet support or 'genetree' proportion of gene trees that support a branch
