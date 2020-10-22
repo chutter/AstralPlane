@@ -102,13 +102,13 @@ batchAstral = function(genetree.datasets = NULL,
     dataset.name = gsub(".*/", "", dataset.dirs[x])
 
     AstralPlane::setupAstral(min.n.samples = min.n.samples,
-                min.sample.prop = min.sample.prop,
-                genetree.folder = dataset.dirs[x],
-                taxa.remove = taxa.remove,
-                output.name = paste0(output.dir, "/", dataset.name),
-                make.polytomy = make.polytomy,
-                polytomy.limit = polytomy.limit,
-                overwrite = TRUE)
+                             min.sample.prop = min.sample.prop,
+                             genetree.folder = dataset.dirs[x],
+                             taxa.remove = taxa.remove,
+                             output.name = paste0(output.dir, "/", dataset.name),
+                             make.polytomy = make.polytomy,
+                             polytomy.limit = polytomy.limit,
+                             overwrite = TRUE)
 
     #Moves to new folder
     out.file = paste0(dataset.name, "_genetrees.tre")
