@@ -62,6 +62,8 @@ runAstral = function(input.genetrees = NULL,
 
   input.genetrees = paste0(input.genetrees)
 
+  if (file.exists(input.genetrees) == FALSE){ input.genetrees = paste0(input.genetrees, "_genetrees.tre") }
+
   if (multi.thread == TRUE){
 
     as.command = gsub(".*/", "", astral.path)
