@@ -47,6 +47,13 @@ setupAstral = function(genetree.folder = NULL,
                        make.polytomy = TRUE,
                        polytomy.limit = 0) {
 
+  genetree.folder = tree.dir
+  output.name = save.name
+  min.n.samples = 4
+  min.sample.prop = 0
+  make.polytomy = TRUE
+  polytomy.limit = 10
+
   if (is.null(genetree.folder) == TRUE){ stop("A folder of gene trees must be provided.")}
 
   #Sets up directory for output
@@ -82,14 +89,14 @@ setupAstral = function(genetree.folder = NULL,
     }
 
     #Skips if less than 4 taxa
-    if (length(temp.tree$tip.label) < min.n.samples){
+    if (length(temp.tree$tip.label) <= min.n.samples){
       print(paste0(gene.trees[x], " skipped, less than ", min.n.samples, " samples."))
       next
     }#end min sample check
 
     if (is.null(min.sample.prop) != TRUE){
       #Skips if less than the desire sampling proportion
-      if (length(temp.tree$tip.label)/max.taxa < min.sample.prop){
+      if (length(temp.tree$tip.label)/max.taxa <= min.sample.prop){
         print(paste0(gene.trees[x], " skipped, less than ",
                      min.sample.prop, " proportion samples."))
         next
