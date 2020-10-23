@@ -47,12 +47,6 @@ setupAstral = function(genetree.folder = NULL,
                        make.polytomy = TRUE,
                        polytomy.limit = 0) {
 
-  genetree.folder = tree.dir
-  output.name = save.name
-  min.n.samples = 4
-  min.sample.prop = 0
-  make.polytomy = TRUE
-  polytomy.limit = 10
 
   if (is.null(genetree.folder) == TRUE){ stop("A folder of gene trees must be provided.")}
 
