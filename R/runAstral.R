@@ -53,12 +53,19 @@ runAstral = function(input.genetrees = NULL,
                      astral.t = 2,
                      quiet = TRUE,
                      load.tree = FALSE,
+                     overwrite = FALSE,
                      multi.thread = TRUE,
                      memory = "1g") {
 
-  if (is.null(input.genetrees) == TRUE){ stop("No gene tree file provided.") }
-  if (is.null(output.name) == TRUE){ stop("No output save name provided.") }
-  if (is.null(astral.path) == TRUE){ stop("A full path to your astral JAR file is needed.") }
+  if (is.null(input.genetrees) == TRUE){ stop("Error: No gene tree file provided.") }
+  if (is.null(output.name) == TRUE){ stop("Error: No output save name provided.") }
+  if (is.null(astral.path) == TRUE){ stop("Error: A full path to your astral JAR file is needed.") }
+
+  if (overwrite == FALSE){
+    if (file.exists(paste0(output.name, "_astral.tre")) == TRUE){
+      stop("Error: overwrite = FALSE and file exists.")
+      }
+  }#end overwrite if
 
   input.genetrees = paste0(input.genetrees)
 

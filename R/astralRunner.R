@@ -66,6 +66,7 @@ astralRunner = function(concat.genetree.folder = NULL,
               astral.path = astral.path,
               astral.t = astral.t,
               quiet = quiet,
+              overwrite = overwrite,
               load.tree = FALSE,
               multi.thread = multi.thread,
               memory = memory)
