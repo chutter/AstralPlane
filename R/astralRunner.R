@@ -28,7 +28,7 @@
 
 astralRunner = function(concat.genetree.folder = NULL,
                         output.dir = NULL,
-                        overwrite = TRUE,
+                        overwrite = FALSE,
                         astral.path = NULL,
                         astral.t = 2,
                         quiet = TRUE,
@@ -43,12 +43,12 @@ astralRunner = function(concat.genetree.folder = NULL,
   #Sets up directory for output
   if (dir.exists(output.dir) == F){ dir.create(output.dir) }
   #Checks for output directory and creates it if not found
-  if (overwrite == TRUE){
-    if (dir.exists(output.dir) == T){
-      unlink(output.dir, recursive = T)
-      dir.create(output.dir)
-    }#end dir exist
-  }#end overwrite
+  # if (overwrite == TRUE){
+  #   if (dir.exists(output.dir) == T){
+  #     unlink(output.dir, recursive = T)
+  #     dir.create(output.dir)
+  #   }#end dir exist
+  # }#end overwrite
 
   concat.genetrees = list.files(concat.genetree.folder)
 
@@ -61,6 +61,13 @@ astralRunner = function(concat.genetree.folder = NULL,
     input.trees = paste0(concat.genetree.folder, "/", concat.genetrees[x])
     out.name = paste0(output.dir, "/", concat.name)
 
+    if (overwrite == FALSE){
+      if (file.exists(paste0(out.name, "_astral.tre")) == TRUE){
+        print(paste0("skipping ", out.name, "; file already exists and overwrite = FALSE."))
+        next }
+    }#end overwrite if
+
+    #Runs astral
     runAstral(input.genetrees = input.trees,
               output.name = out.name,
               astral.path = astral.path,
