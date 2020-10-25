@@ -16,7 +16,8 @@
 #' @export
 
 
-edgeLengthTable = function(tree = NULL, tips = FALSE) {
+edgeLengthTable = function(tree = NULL,
+                           tips = FALSE) {
 
   if (is.null(tree) == TRUE){ stop("No phylogenetic tree provided.") }
 

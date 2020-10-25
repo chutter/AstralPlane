@@ -33,9 +33,30 @@ concordanceFactors = function(species.tree = NULL,
                               alignment = NULL,
                               gene.trees = NULL,
                               output.name = NULL,
-                              overwrite = TRUE,
+                              overwrite = FALSE,
                               quiet = TRUE,
                               threads = 1) {
+
+  #Missing stuff checks
+  if (is.null(species.tree) == TRUE){ stop("Error: A species tree must be provided.")}
+  if (is.null(alignment) == TRUE){ stop("Error: A directory of alignments must be provided.")}
+  if (is.null(gene.trees) == TRUE){ stop("Error: A directory of gene trees must be provided.")}
+  if (is.null(output.name) == TRUE){ stop("Error: An output name must be provided.")}
+
+  #Check if files exist or not
+  if (dir.exists(alignment) == F){
+    return(paste0("Folder of alignments could not be found. Exiting."))
+  }#end file check
+
+  #Check if files exist or not
+  if (dir.exists(gene.trees) == F){
+    return(paste0("Folder of gene trees could not be found. Exiting."))
+  }#end file check
+
+  #Check if files exist or not
+  if (file.exists(species.tree) == F){
+    return(paste0("Species tree could not be found. Exiting."))
+  }#end file check
 
   #Loads in the directory
   if (overwrite == TRUE){

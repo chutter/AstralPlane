@@ -34,13 +34,14 @@ setwd(work.dir)
 ###############
 
 #Set up your directories
-tree.dir = "/Users/chutter/Dropbox/Research/2_WIP/Hylidae/Trees/Gene_Trees/all-markers_trimmed"
+tree.dir = "/Users/chutter/Dropbox/Research/0_Working-Projects/Hylidae/Trees/Gene_Trees/all-markers_trimmed"
 outgroups = c("Phyllomedusa_tomopterna_WED_55506", "Nyctimystes_infrafrenatus_SLT_771")
 save.name = "test-dataset"
 
 #Setting up a single dataset
 setupAstral(genetree.folder = tree.dir,
             output.name = save.name,
+            overwrite = TRUE,
             min.n.samples = 4,
             min.sample.prop = 0,
             make.polytomy = TRUE,
@@ -52,21 +53,22 @@ runAstral(input.genetrees = save.name,
           astral.path = astral.path,
           astral.t = 2,
           quiet = FALSE,
+          overwrite = TRUE,
           load.tree = FALSE,
           multi.thread = TRUE,
           memory = "8g")
 
 #Read in the astral data and tree and organize it into different slots
-astral.data = astralPlane(astral.tree = save.name,
-                          outgroups = outgroups,
-                          tip.length = 1)
-
+astral.data = createAstralPlane(astral.tree = save.name,
+                                outgroups = outgroups,
+                                tip.length = 1)
 
 #Plots the astral data
 astralProjection(astral.plane = astral.data,
                  local.posterior = TRUE,
-                 pie.plot = "qscore",
-                 save.file = "test-dataset.pdf",
+                 pie.plot = TRUE,
+                 pie.data = "qscore",
+                 save.file = NULL,
                  pie.colors = c("purple", "blue", "green"),
                  node.color.text = c("white"),
                  node.color.bg = c("black"),

@@ -44,7 +44,8 @@
 
 astralProjection = function(astral.plane = NULL,
                             local.posterior = TRUE,
-                            pie.plot = c("qscore", "genetree"),
+                            pie.plot = TRUE,
+                            pie.data = c("qscore", "genetree"),
                             save.file = NULL,
                             pie.colors = c("black", "grey", "white"),
                             node.color.text = c("white"),
@@ -55,8 +56,8 @@ astralProjection = function(astral.plane = NULL,
 
   # astral.plane = astral.data
   # local.posterior = TRUE
-  # pie.plot = "qscore"
-  # save.file = paste0(astral.trees[i],"_summary.pdf")
+  # pie.data = "qscore"
+  # save.file = "test_summary.pdf"
   # pie.colors = c("purple", "blue", "green")
   # node.color.text = c("white")
   # node.color.bg = c("black")
@@ -64,44 +65,50 @@ astralProjection = function(astral.plane = NULL,
   # pie.chart.size = 0.3
 
   if (is.null(astral.plane) == TRUE){ stop("No data provided! Run astralPlane function first.") }
-  if (length(pie.plot) == 2){ stop("Please pick 'qscore' or 'genetree' for pie plots") }
-
-  #Gathers pie data
-  if (pie.plot == "qscore"){
-    pie.data = data.frame(node = astral.plane@nodeData$node,
-                          q1 = astral.plane@nodeData$q1,
-                          q2 = astral.plane@nodeData$q2,
-                          q3 = astral.plane@nodeData$q3)
-  }#end qscore if
-
-  if (pie.plot == "genetree"){
-    pie.data = data.frame(node = astral.plane@nodeData$node,
-                          f1 = astral.plane@nodeData$f1,
-                          f2 = astral.plane@nodeData$f2,
-                          f3 = astral.plane@nodeData$f3)
-  }#end genetree if
+  if (length(pie.data) == 2){ stop("Please pick 'qscore' or 'genetree' for pie plots") }
 
   #Matches edge data with nodes
   edge.no = which(astral.plane@edgeData$node2 > length(astral.plane@samples))
   edge.node = astral.plane@phylo$edge
   edge.node = data.frame(edge = rep(1:nrow(edge.node)), node1 = edge.node[,1], node2 = edge.node[,2])
-
+  #Merges the data together
   edge.red = astral.plane@edgeData[edge.no,]
   merge.data = merge(astral.plane@nodeData, astral.plane@edgeData, by.x = "node", by.y = "node2")
   merge.data$node = as.numeric(merge.data$node)
 
+  #Gathers pie data
+  if (pie.data == "qscore"){
+    pie.info = data.frame(q1 = merge.data$q1,
+                          q2 = merge.data$q2,
+                          q3 = merge.data$q3)
+  }#end qscore if
+
+  if (pie.data == "genetree"){
+    pie.info = data.frame(f1 = merge.data$f1,
+                          f2 = merge.data$f2,
+                          f3 = merge.data$f3)
+  }#end genetree if
+
+
   #Saves file
   if(is.null(save.file) != T){ pdf(file = save.file, width = 10, height = 8) }
 
+  #Plots the initial tree
   ape::plot.phylo(astral.plane@phylo, cex = tip.label.size)
-  ape::edgelabels(edge = merge.data$edge,
-             pie = as.matrix(merge.data[,2:4]),
-             piecol = pie.colors, cex = pie.chart.size)
 
-  pp.data = merge.data[1,]
-  pp.data[1,1] = pp.data[1,1] - 1
-  pp.data = rbind(pp.data, merge.data)
+  #Plots the pie chart
+  if (pie.plot == TRUE){
+    ape::edgelabels(edge = merge.data$edge,
+               pie = as.matrix(pie.info),
+               piecol = pie.colors,
+               cex = pie.chart.size)
+  }#end if pie.plot
+
+  #Plots the posterior support value
   if(local.posterior == TRUE){
+    pp.data = merge.data[1,]
+    pp.data[1,1] = pp.data[1,1] - 1
+    pp.data = rbind(pp.data, merge.data)
     ape::nodelabels(text = round(pp.data$pp1, 2),
                node = pp.data$node,
                col = node.color.text,

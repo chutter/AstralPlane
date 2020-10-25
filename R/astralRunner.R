@@ -40,15 +40,20 @@ astralRunner = function(concat.genetree.folder = NULL,
   if (is.null(output.dir) == TRUE){ stop("No output save name provided.") }
   if (is.null(astral.path) == TRUE){ stop("A full path to your astral JAR file is needed.") }
 
+  #Check if files exist or not
+  if (file.exists(astral.path) == F){
+    return(paste0("Astral jar file could not be found. Exiting."))
+  }#end file check
+
   #Sets up directory for output
   if (dir.exists(output.dir) == F){ dir.create(output.dir) }
   #Checks for output directory and creates it if not found
-  # if (overwrite == TRUE){
-  #   if (dir.exists(output.dir) == T){
-  #     unlink(output.dir, recursive = T)
-  #     dir.create(output.dir)
-  #   }#end dir exist
-  # }#end overwrite
+  if (overwrite == TRUE){
+    if (dir.exists(output.dir) == T){
+      unlink(output.dir, recursive = T)
+      dir.create(output.dir)
+    }#end dir exist
+  }#end overwrite
 
   concat.genetrees = list.files(concat.genetree.folder)
 

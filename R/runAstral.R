@@ -61,15 +61,22 @@ runAstral = function(input.genetrees = NULL,
   if (is.null(output.name) == TRUE){ stop("Error: No output save name provided.") }
   if (is.null(astral.path) == TRUE){ stop("Error: A full path to your astral JAR file is needed.") }
 
-  if (overwrite == FALSE){
-    if (file.exists(paste0(output.name, "_astral.tre")) == TRUE){
-      stop("Error: overwrite = FALSE and file exists.")
-      }
-  }#end overwrite if
+  #Overwrite checker
+  if (overwrite == TRUE){
+    if (file.exists(paste0(output.name, "_astral.tre")) == T){
+      #Checks for output directory and creates it if not found
+      system(paste0("rm ", output.name, "_astral.tre"))
+    }#end file exists
+  } else {
+    if (file.exists(paste0(output.name, "_astral.tre")) == T){
+      return(paste0("File exists for ", output.name, " and overwrite = FALSE. Exiting."))
+    }#end file check
+  }#end else
 
+  #checks both name types
   input.genetrees = paste0(input.genetrees)
-
   if (file.exists(input.genetrees) == FALSE){ input.genetrees = paste0(input.genetrees, "_genetrees.tre") }
+  if (file.exists(input.genetrees) == FALSE){ stop("Error: input gene trees could not be found.") }
 
   if (multi.thread == TRUE){
 

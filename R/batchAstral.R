@@ -54,7 +54,7 @@
 
 batchAstral = function(genetree.datasets = NULL,
                        output.dir = NULL,
-                       overwrite = TRUE,
+                       overwrite = FALSE,
                        taxa.remove = NULL,
                        min.n.samples = 4,
                        min.sample.prop = NULL,
@@ -85,6 +85,16 @@ batchAstral = function(genetree.datasets = NULL,
   if (is.null(output.dir) == TRUE){ stop("No output directory provided.") }
   if (is.null(astral.path) == TRUE){ stop("A full path to your astral JAR file is needed.") }
 
+  #Check if files exist or not
+  if (file.exists(astral.path) == F){
+    return(paste0("Astral jar file could not be found. Exiting."))
+  }#end file check
+
+  #Check if files exist or not
+  if (dir.exists(genetree.datasets) == F){
+    return(paste0("Directory of genetree.datasets could not be found. Exiting."))
+  }#end file check
+
   #Sets up directory for output
   if (dir.exists(output.dir) == F){ dir.create(output.dir) }
   #Checks for output directory and creates it if not found
@@ -108,7 +118,7 @@ batchAstral = function(genetree.datasets = NULL,
                              output.name = paste0(output.dir, "/", dataset.name),
                              make.polytomy = make.polytomy,
                              polytomy.limit = polytomy.limit,
-                             overwrite = TRUE)
+                             overwrite = overwrite)
 
     #Moves to new folder
     out.file = paste0(dataset.name, "_genetrees.tre")
@@ -120,7 +130,8 @@ batchAstral = function(genetree.datasets = NULL,
                            astral.path = astral.path,
                            memory = memory,
                            multi.thread = TRUE,
-                           load.tree = FALSE)
+                           load.tree = FALSE,
+                           overwrite = overwrite)
 
     print(paste0("Finished ", dataset.name, "!"))
 

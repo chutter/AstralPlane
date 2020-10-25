@@ -40,21 +40,33 @@
 
 setupAstral = function(genetree.folder = NULL,
                        output.name = NULL,
-                       overwrite = TRUE,
+                       overwrite = FALSE,
                        taxa.remove = NULL,
                        min.n.samples = 4,
                        min.sample.prop = NULL,
                        make.polytomy = TRUE,
-                       polytomy.limit = 0) {
+                       polytomy.limit = 10) {
 
+  #Error checks
+  if (is.null(genetree.folder) == TRUE){ stop("Error: A folder of gene trees must be provided.")}
+  if (is.null(output.name) == TRUE){ stop("Error: An output save name must be provided.")}
 
-  if (is.null(genetree.folder) == TRUE){ stop("A folder of gene trees must be provided.")}
+  #Overwrite checker
+  if (overwrite == TRUE){
+    if (file.exists(paste0(output.name, "_genetrees.tre")) == T){
+      #Checks for output directory and creates it if not found
+      system(paste0("rm ", output.name, "_genetrees.tre"))
+    }#end file exists
+  } else {
+    if (file.exists(paste0(output.name, "_genetrees.tre")) == T){
+      return(paste0("File exists for ", output.name, " and overwrite = FALSE. Exiting."))
+    }#end file check
+  }#end else
 
-  #Sets up directory for output
-  if (file.exists(paste0(output.name, "_genetrees.tre")) == T){
-    #Checks for output directory and creates it if not found
-    unlink(paste0(output.name, "_genetrees.tre"))
-  }#end overwrite
+  #Check if files exist or not
+  if (dir.exists(genetree.folder) == F){
+    return(paste0("Folder of gene trees in 'genetree.folder' could not be found. Exiting."))
+  }#end file check
 
   #Gets list of gene trees
   gene.trees = list.files(genetree.folder)

@@ -42,21 +42,35 @@ concordanceRunner = function(alignment.dir = NULL,
                              species.tree.dir = NULL,
                              genetree.dir = NULL,
                              output.dir = "concordance-factors",
-                             overwrite = TRUE,
+                             overwrite = FALSE,
                              quiet = TRUE,
                              threads = 1) {
+
+  #Missing stuff checks
+  if (is.null(species.tree.dir) == TRUE){ stop("Error: A directory of species trees must be provided.")}
+  if (is.null(alignment.dir) == TRUE){ stop("Error: A directory of alignments must be provided.")}
+  if (is.null(genetree.dir) == TRUE){ stop("Error: A directory of gene trees must be provided.")}
+  if (is.null(output.dir) == TRUE){ stop("Error: An output directory must be provided.")}
+
+  #Check if files exist or not
+  if (dir.exists(alignment.dir) == F){
+    return(paste0("Directory of alignments could not be found. Exiting."))
+  }#end file check
+
+  #Check if files exist or not
+  if (dir.exists(genetree.dir) == F){
+    return(paste0("Directory of gene trees could not be found. Exiting."))
+  }#end file check
+
+  #Check if files exist or not
+  if (dir.exists(species.tree) == F){
+    return(paste0("Directory of species trees could not be found. Exiting."))
+  }#end file check
 
   #Loads in the directory
   if (overwrite == TRUE){
     system(paste0("rm -r ", output.dir))
     dir.create(output.dir) }
-
-  #Checks for overwrite
-  if (overwrite == FALSE){
-    if(file.exists(output.dir) == TRUE){
-      stop("Error: overwrite = F and folder exists")
-    }#end if
-  }#end if
 
   #Loads in the files
   a.files = list.files(species.tree.dir)
@@ -73,11 +87,19 @@ concordanceRunner = function(alignment.dir = NULL,
     part.file = sub.align[grep("_raxml.txt$", sub.align)]
     gene.tree = gene.files[grep(dataset.name, gene.files)]
 
+    if (overwrite == FALSE){
+      if (file.exists(paste0(output.dir, "/", dataset.name)) == TRUE){
+        print(paste0("skipping ", dataset.name, "; file already exists and overwrite = FALSE."))
+        next }
+    }#end overwrite if
+
     concordanceFactors(species.tree = paste0(species.tree.dir, "/", a.files[i]),
                        alignment = paste0(alignment.dir, "/", align.file),
                        gene.trees = paste0(genetree.dir, "/", gene.tree),
                        output.name = paste0(output.dir, "/", dataset.name),
-                       quiet = quiet, threads = threads)
+                       quiet = quiet,
+                       threads = threads,
+                       overwrite = overwrite)
 
   }#end i loop
 

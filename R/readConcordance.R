@@ -19,6 +19,11 @@
 readConcordance = function(file.name = NULL) {
 
   #### *** MAKE S4 Object
+  if (is.null(file.name) == TRUE){ stop("Error: A file name is needed.") }
+
+  if (file.exists(file.name) == F){
+    return(paste0("File in 'file.name' could not be found. Exiting."))
+  }#end file check
 
   header.names = c("node","gCF","gCF_N","gDF1", "gDF1_N", "gDF2", "gDF2_N",
                    "gDFP", "gDFP_N", "gN", "sCF",	"sCF_N",	"sDF1",	"sDF1_N",

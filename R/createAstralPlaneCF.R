@@ -27,9 +27,15 @@ createAstralPlaneCF = function(cf.file.name = NULL,
                                tip.length = 1) {
 
   if(is.null(outgroups) == TRUE){ stop("Please provide outgroups.") }
+  if(is.null(cf.file.name) == TRUE){ stop("Please provide cf.file.name") }
 
   #Reads in tree
   astral.tree.name = paste0(cf.file.name, ".cf.branch")
+
+  #Check if files exist or not
+  if (file.exists(astral.tree.name) == F){
+    return(paste0("Concordance factor data could not be found. Exiting."))
+  }#end file check
 
   #Read in tree and root it properly
   a.tree = ape::read.tree(astral.tree.name)
