@@ -128,6 +128,7 @@ astral.path: the absolute path to astral. Needed because astral needs it.
 astral.t: the t value from astral for different annotations. t = 2, all annotations is recommended for full functionality
 quiet: hides the screen output from astral if desired
 load.tree: should the tree be loaded into R?
+overwrite: whether to overwrite an existing dataset
 multi.thread: whether to use Astral-MP multithreading or not.
 memory: memory value to be passed to java. Should be in "Xg" format, X = an integer
 ```
@@ -160,6 +161,7 @@ astralProjection(astral.plane = astral.data,
                  pie.colors = c("purple", "blue", "green"),
                  node.color.text = c("white"),
                  node.color.bg = c("black"),
+                 node.label.size = 0.5,
                  tip.label.size = 0.75,
                  pie.chart.size = 1)
 ```
@@ -176,6 +178,7 @@ save.file: if you wish to save to file, put file name. Saves as PDF
 pie.colors: select three colors to plot your pie.plot
 node.color.text: if local.posterior = TRUE, select the color of posterior support text
 node.color.bg: if local.posterior = TRUE, select the color of posterior support background
+node.label.size: size of the node labels, passed to cex in plotting function
 tip.label.size: size of the tip labels, passed to cex in plotting function
 pie.chart.size: size of pie chart, passed to edgelabel plotting function
 
