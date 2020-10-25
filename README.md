@@ -154,7 +154,8 @@ tip.length: arbitrary value for the terminal tip lengths, Astral does not comput
 ```r
 astralProjection(astral.plane = astral.data,
                  local.posterior = TRUE,
-                 pie.plot = "qscore",
+                 pie.plot = TRUE,
+                 pie.data = "qscore"
                  save.file = "example_plot.pdf",
                  pie.colors = c("purple", "blue", "green"),
                  node.color.text = c("white"),
@@ -169,7 +170,8 @@ Parameter explanations:
 ```
 astral.plane: AstralPlane S4 object of data generated from AstralPlane function
 local.posterior: plot the local posterior support?
-pie.plot: select one to plot: 'qscore' the quartet support or 'genetree' proportion of gene trees that support a branch
+pie.plot: TRUE to plot pie charts on branches. FALSE ignores whatever is selected for "pie.data"
+pie.data: select one to plot: 'qscore' the quartet support or 'genetree' proportion of gene trees that support a branch
 save.file: if you wish to save to file, put file name. Saves as PDF
 pie.colors: select three colors to plot your pie.plot
 node.color.text: if local.posterior = TRUE, select the color of posterior support text
