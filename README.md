@@ -123,12 +123,13 @@ Parameter explanations:
 
 ```
 input.genetrees: a file of genetrees from setupAstral
-output.name: the save name for the astral file
-astral.path: the absolute path to astral. Needed because astral needs it.
-astral.t: the t value from astral for different annotations. t = 2, all annotations is recommended for full functionality
+output.name: the save name for the ASTRAL-III file
+astral.path: the absolute file path to the ASTRAL-III jar file
+astral.t: the ASTRAL-III "t" parameter for different annotations, t = 2 is all annotation
 quiet: hides the screen output from astral if desired
-load.tree: should the tree be loaded into R?
-multi.thread: whether to use Astral-MP multithreading or not.
+load.tree: TRUE to laod the tree into R
+overwrite: TRUE to overwrite an existing dataset
+multi.thread: TRUE to use Astral-MP multithreading 
 memory: memory value to be passed to java. Should be in "Xg" format, X = an integer
 ```
 
@@ -144,9 +145,9 @@ astral.data = createAstralPlane(astral.tree = save.name,
 Parameter explanations: 
 
 ```
-astral.tree: phylogenetic tree from ape read.tree
+astral.tree: phylogenetic tree from ape read.tree or a file path to a tree file
 outgroups: a vector of outgroups to root the tree
-tip.length: arbitrary value for the terminal tip lengths, Astral does not compute this
+tip.length: arbitrary value for the terminal tip lengths for plotting purposes
 ```
 
 8) Finally, you can plot your results using the astralProjection function. You give the function the astralPlane object from the previous step, and select your settings for plotting, and what you would like to plot. An example plot is provided in the main Github repository. 
@@ -154,11 +155,13 @@ tip.length: arbitrary value for the terminal tip lengths, Astral does not comput
 ```r
 astralProjection(astral.plane = astral.data,
                  local.posterior = TRUE,
-                 pie.plot = "qscore",
+                 pie.plot = TRUE,
+                 pie.data = "qscore"
                  save.file = "example_plot.pdf",
                  pie.colors = c("purple", "blue", "green"),
                  node.color.text = c("white"),
                  node.color.bg = c("black"),
+                 node.label.size = 0.5,
                  tip.label.size = 0.75,
                  pie.chart.size = 1)
 ```
@@ -168,12 +171,14 @@ Parameter explanations:
 
 ```
 astral.plane: AstralPlane S4 object of data generated from AstralPlane function
-local.posterior: plot the local posterior support?
-pie.plot: select one to plot: 'qscore' the quartet support or 'genetree' proportion of gene trees that support a branch
+local.posterior: plot the local posterior support = TRUE
+pie.plot: TRUE to plot pie charts on branches. FALSE ignores whatever is selected for "pie.data"
+pie.data: 'qscore' the quartet support or 'genetree' proportion of gene trees that support a branch
 save.file: if you wish to save to file, put file name. Saves as PDF
 pie.colors: select three colors to plot your pie.plot
 node.color.text: if local.posterior = TRUE, select the color of posterior support text
 node.color.bg: if local.posterior = TRUE, select the color of posterior support background
+node.label.size: size of the node labels, passed to cex in plotting function
 tip.label.size: size of the tip labels, passed to cex in plotting function
 pie.chart.size: size of pie chart, passed to edgelabel plotting function
 
