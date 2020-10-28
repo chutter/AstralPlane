@@ -21,7 +21,7 @@ readConcordance = function(file.name = NULL) {
   #### *** MAKE S4 Object
   if (is.null(file.name) == TRUE){ stop("Error: A file name is needed.") }
 
-  if (file.exists(file.name) == F){
+  if (file.exists(paste0(file.name, ".cf.stat")) == F){
     return(paste0("File in 'file.name' could not be found. Exiting."))
   }#end file check
 

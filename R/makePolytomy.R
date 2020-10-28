@@ -26,6 +26,8 @@
 makePolytomy = function(tree = NULL,
                         polytomy.limit = NULL) {
 
+  #tree = temp.tree
+
   #Checks for things
   if (is.null(tree)){ stop("Tree not provided.") }
   if (is.null(polytomy.limit)){ stop("Polytomy limit not provided.") }
@@ -35,9 +37,12 @@ makePolytomy = function(tree = NULL,
   #Crates node-edge table to reference and collapse
   edge.table = data.frame(tree$edge[tree$edge[,2] > length(tree$tip.label),])
   edge.table = cbind(edge.table, as.numeric(tree$node.label[2:length(tree$node.label)]))
+
+  if (ncol(edge.table) != 3){ return("There are not enough nodes in the tree to collapse.") }
+
   colnames(edge.table) = c(1,2,3)
-  if (mean(edge.table[,3]) < 1 & polytomy.limit > 1){ stop("Polytomy limit must match support values.") }
-  if (mean(edge.table[,3]) > 1 & polytomy.limit < 1){ stop("Polytomy limit must match support values.") }
+  if (mean(edge.table[,3], na.rm = T) < 1 & polytomy.limit > 1){ stop("Polytomy limit must match support values.") }
+  if (mean(edge.table[,3], na.rm = T) > 1 & polytomy.limit < 1){ stop("Polytomy limit must match support values.") }
 
   #obtains nodes to collapse
   collapse.table = edge.table[edge.table[,3] < polytomy.limit,]

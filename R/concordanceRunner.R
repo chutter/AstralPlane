@@ -10,7 +10,7 @@
 #'
 #' @param output.dir the output directory name for the astral file
 #'
-#' @param overwrite overwrite if file exists?
+#' @param overwrite overwrite = TRUE to overwrite existing files
 #'
 #' @param quiet hides the screen output from astral if desired
 #'
@@ -46,6 +46,14 @@ concordanceRunner = function(alignment.dir = NULL,
                              quiet = TRUE,
                              threads = 1) {
 
+  # alignment.dir = paste0(work.dir, "/filtered-alignments-concatenated")
+  # species.tree.dir = paste0(work.dir, "/filtered-astral")
+  # genetree.dir = paste0(work.dir, "/filtered-genetrees-concatenated")
+  # output.dir = "concordance-factors"
+  # overwrite = TRUE
+  # quiet = TRUE
+  # threads  = 6
+
   #Missing stuff checks
   if (is.null(species.tree.dir) == TRUE){ stop("Error: A directory of species trees must be provided.")}
   if (is.null(alignment.dir) == TRUE){ stop("Error: A directory of alignments must be provided.")}
@@ -63,14 +71,14 @@ concordanceRunner = function(alignment.dir = NULL,
   }#end file check
 
   #Check if files exist or not
-  if (dir.exists(species.tree) == F){
+  if (dir.exists(species.tree.dir) == F){
     return(paste0("Directory of species trees could not be found. Exiting."))
   }#end file check
 
   #Loads in the directory
   if (overwrite == TRUE){
     system(paste0("rm -r ", output.dir))
-    dir.create(output.dir) }
+    dir.create(output.dir) } else { dir.create(output.dir) }
 
   #Loads in the files
   a.files = list.files(species.tree.dir)
@@ -82,13 +90,13 @@ concordanceRunner = function(alignment.dir = NULL,
 
     dataset.name = gsub("_astral.tre$", "", a.files[i])
 
-    sub.align = align.files[grep(dataset.name, align.files)]
+    sub.align = align.files[grep(paste0(dataset.name, "$"), gsub(".phy$", "", align.files))]
     align.file = sub.align[grep(".phy$", sub.align)]
-    part.file = sub.align[grep("_raxml.txt$", sub.align)]
-    gene.tree = gene.files[grep(dataset.name, gene.files)]
+    gene.tree = gene.files[grep(paste0(dataset.name, "$"), gsub("_genetrees.tre", "", gene.files))]
 
+    #Overwrite check
     if (overwrite == FALSE){
-      if (file.exists(paste0(output.dir, "/", dataset.name)) == TRUE){
+      if (file.exists(paste0(output.dir, "/", dataset.name, ".cf.stat")) == TRUE){
         print(paste0("skipping ", dataset.name, "; file already exists and overwrite = FALSE."))
         next }
     }#end overwrite if
@@ -100,6 +108,8 @@ concordanceRunner = function(alignment.dir = NULL,
                        quiet = quiet,
                        threads = threads,
                        overwrite = overwrite)
+
+    print(paste0(dataset.name, " has finished concordance factor analysis!"))
 
   }#end i loop
 

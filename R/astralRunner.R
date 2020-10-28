@@ -6,15 +6,15 @@
 #'
 #' @param output.dir the output directory name for the astral file
 #'
-#' @param overwrite overwrite if file exists?
+#' @param overwrite overwrite = TRUE to overwrite existing files
 #'
-#' @param astral.path the absolute path to astral. Needed because astral needs it.
+#' @param astral.path the absolute file path to the ASTRAL-III jar file
 #'
-#' @param astral.t the t value from astral for different annotations. t = 2, all annotations is recommended for full functionality
+#' @param astral.t the ASTRAL-III "t" parameter for different annotations, t = 2 is all annotation
 #'
-#' @param quiet hides the screen output from astral if desired
+#' @param quiet TRUE hides the screen output from astral 
 #'
-#' @param multi.thread whether to use Astral-MP multithreading or not.
+#' @param multi.thread TRUE to use Astral-MP multithreading 
 #'
 #' @param memory memory value to be passed to java. Should be in "Xg" format, X = an integer
 #'
@@ -83,7 +83,7 @@ astralRunner = function(concat.genetree.folder = NULL,
               multi.thread = multi.thread,
               memory = memory)
 
-    print(paste0("Finished ", concat.genetrees[x], "!"))
+    print(paste0("Finished ASTRAL run for ", concat.genetrees[x], "!"))
 
   }#end x loop
 

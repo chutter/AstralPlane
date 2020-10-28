@@ -6,6 +6,8 @@
 #'
 #' @param output.name the save name for the astral file
 #'
+#' @param overwrite whether to overwrite an existing dataset
+#'
 #' @param astral.path the absolute path to astral. Needed because astral needs it.
 #'
 #' @param astral.t the t value from astral for different annotations. t = 2, all annotations is recommended for full functionality

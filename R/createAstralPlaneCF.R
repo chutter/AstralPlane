@@ -26,6 +26,10 @@ createAstralPlaneCF = function(cf.file.name = NULL,
                                outgroups = NULL,
                                tip.length = 1) {
 
+
+  #cf.file.name = paste0(input.dir, "/", cf.files[x])
+  #outgroups = outgroup.taxa
+
   if(is.null(outgroups) == TRUE){ stop("Please provide outgroups.") }
   if(is.null(cf.file.name) == TRUE){ stop("Please provide cf.file.name") }
 
