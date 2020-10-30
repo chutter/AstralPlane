@@ -24,7 +24,7 @@ library(AstralPlane)
 astral.path = "/usr/local/bin/Astral-5-14/astral.5.14.2.jar"
 
 #Create
-work.dir = "/Volumes/Armored/Hylidae/Test_Astral"
+work.dir = "/Users/chutter/Dropbox/Research/1_Main-Projects/0_Working-Projects/Hylidae"
 dir.create(work.dir)
 setwd(work.dir)
 
@@ -34,7 +34,7 @@ setwd(work.dir)
 ###############
 
 #Set up your directories
-tree.dir = "/Users/chutter/Dropbox/Research/0_Working-Projects/Hylidae/Trees/Gene_Trees/all-markers_trimmed"
+tree.dir = "/Users/chutter/Dropbox/Research/1_Main-Projects/0_Working-Projects/Hylidae/Trees/Gene_Trees/all-markers_trimmed"
 outgroups = c("Phyllomedusa_tomopterna_WED_55506", "Nyctimystes_infrafrenatus_SLT_771")
 save.name = "test-dataset"
 
