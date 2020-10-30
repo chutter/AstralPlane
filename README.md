@@ -4,6 +4,8 @@ R Package For Preparing, Running, Analyzing and Plotting from the Species Tree P
 
 This R package is meant to facilitate ASTRAL-III analyses and provide easy R plotting. The package helps prepare analyses from a folder of gene trees, runs astral from R, and creates a new S4 object type "AstralPlane" for easily analyzing the output from ASTRAL-III. The packageprovides several different types of plots, from pie charts on phylogenetic trees representing the quartet frequencies to plotting the gene tree frequencies as far plots. 
 
+![](/pics/header_plot.svg)
+
 This package is still in beta testing phase, and more features and expanded functionality will be added in the future. Now, the package can run a standard ASTRAL-III analysis, read in the analysis results, and create pie-chart tree plots. The goal is for this R package to have the same functionality as DiscoVista (https://github.com/esayyari/DiscoVista) plus additional tools, plotting, and quality of life improvements, but within the R environment. 
 
 If you find any issues with something not working, or you would like features to be added, go to issues in the top menu bar and submit them. 
@@ -184,7 +186,7 @@ pie.chart.size: size of pie chart, passed to edgelabel plotting function
 
 ```
 
-![](/pics/Example_plot.pdf)
+![](/pics/Example_plot.svg)
 
 
 # Mini-Vignette: Usage and many dataset example 
