@@ -184,7 +184,7 @@ pie.chart.size: size of pie chart, passed to edgelabel plotting function
 
 ```
 
-![](/pics/Example_plot.pdf)
+![](/pics/Example_plot.svg)
 
 
 # Mini-Vignette: Usage and many dataset example 
