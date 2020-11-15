@@ -158,7 +158,7 @@ tip.length: arbitrary value for the terminal tip lengths for plotting purposes
 astralProjection(astral.plane = astral.data,
                  local.posterior = TRUE,
                  pie.plot = TRUE,
-                 pie.data = "qscore"
+                 pie.data = "genetree",
                  save.file = "example_plot.pdf",
                  pie.colors = c("purple", "blue", "green"),
                  node.color.text = c("white"),
