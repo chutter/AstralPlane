@@ -245,4 +245,35 @@ multi.thread: TRUE to use Astral-MP multithreading
 memory: memory value to be passed to java. Should be in "Xg" format, X = an integer
 ```
 
-After this single function is run, the "test-dataset" output directory will be created with all of your astral results in them! You can create figures and plot the results as above. 
+After this single function is run, the "test-dataset" output directory will be created with all of your astral results in them! You can create figures and plot the results as above. An example below shows a loop saving the plots for all the datasets: 
+
+```r
+#Obtains dataset names
+datasets = list.dirs(genetree.folder, full.names = F, recursive = F)
+
+for (i in 1:length(datasets)){
+
+  #Read in the astral data and tree and organize it into different slots
+  astral.data = createAstralPlane(astral.tree = paste0("test-dataset/", datasets[i], "_astral.tre"),
+                            outgroups = outgroups,
+                            tip.length = 1)
+
+  #Plots the astral data
+  astralProjection(astral.plane = astral.data,
+                   local.posterior = TRUE,
+                   pie.plot = TRUE,
+                   pie.data = "qscore",
+                   save.file = paste0("test-dataset/", datasets[i], ".pdf"),
+                   pie.colors = c("purple", "blue", "green"),
+                   node.color.text = c("white"),
+                   node.color.bg = c("black"),
+                   tip.label.size = 0.75,
+                   pie.chart.size = 1)
+
+}#end i loop
+```
+
+
+More coming soon!
+
+
