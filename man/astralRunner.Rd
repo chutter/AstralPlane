@@ -7,7 +7,7 @@
 astralRunner(
   concat.genetree.folder = NULL,
   output.dir = NULL,
-  overwrite = TRUE,
+  overwrite = FALSE,
   astral.path = NULL,
   astral.t = 2,
   quiet = TRUE,
@@ -20,15 +20,15 @@ astralRunner(
 
 \item{output.dir}{the output directory name for the astral file}
 
-\item{overwrite}{overwrite if file exists?}
+\item{overwrite}{overwrite = TRUE to overwrite existing files}
 
-\item{astral.path}{the absolute path to astral. Needed because astral needs it.}
+\item{astral.path}{the absolute file path to the ASTRAL-III jar file}
 
-\item{astral.t}{the t value from astral for different annotations. t = 2, all annotations is recommended for full functionality}
+\item{astral.t}{the ASTRAL-III "t" parameter for different annotations, t = 2 is all annotation}
 
-\item{quiet}{hides the screen output from astral if desired}
+\item{quiet}{TRUE hides the screen output from astral}
 
-\item{multi.thread}{whether to use Astral-MP multithreading or not.}
+\item{multi.thread}{TRUE to use Astral-MP multithreading}
 
 \item{memory}{memory value to be passed to java. Should be in "Xg" format, X = an integer}
 }

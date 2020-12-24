@@ -7,11 +7,13 @@
 astralProjection(
   astral.plane = NULL,
   local.posterior = TRUE,
-  pie.plot = c("qscore", "genetree"),
+  pie.plot = TRUE,
+  pie.data = c("qscore", "genetree"),
   save.file = NULL,
   pie.colors = c("black", "grey", "white"),
   node.color.text = c("white"),
   node.color.bg = c("black"),
+  node.label.size = 0.5,
   tip.label.size = 1,
   pie.chart.size = 1
 )

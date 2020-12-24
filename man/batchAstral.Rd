@@ -7,7 +7,7 @@
 batchAstral(
   genetree.datasets = NULL,
   output.dir = NULL,
-  overwrite = TRUE,
+  overwrite = FALSE,
   taxa.remove = NULL,
   min.n.samples = 4,
   min.sample.prop = NULL,

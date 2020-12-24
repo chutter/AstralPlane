@@ -9,7 +9,7 @@ concordanceRunner(
   species.tree.dir = NULL,
   genetree.dir = NULL,
   output.dir = "concordance-factors",
-  overwrite = TRUE,
+  overwrite = FALSE,
   quiet = TRUE,
   threads = 1
 )
@@ -23,7 +23,7 @@ concordanceRunner(
 
 \item{output.dir}{the output directory name for the astral file}
 
-\item{overwrite}{overwrite if file exists?}
+\item{overwrite}{overwrite = TRUE to overwrite existing files}
 
 \item{quiet}{hides the screen output from astral if desired}
 

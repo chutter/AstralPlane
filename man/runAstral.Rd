@@ -11,6 +11,7 @@ runAstral(
   astral.t = 2,
   quiet = TRUE,
   load.tree = FALSE,
+  overwrite = FALSE,
   multi.thread = TRUE,
   memory = "1g"
 )
@@ -27,6 +28,8 @@ runAstral(
 \item{quiet}{hides the screen output from astral if desired}
 
 \item{load.tree}{should the tree be loaded into R?}
+
+\item{overwrite}{whether to overwrite an existing dataset}
 
 \item{multi.thread}{whether to use Astral-MP multithreading or not.}
 

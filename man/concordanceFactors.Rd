@@ -2,38 +2,38 @@
 % Please edit documentation in R/concordanceFactors.R
 \name{concordanceFactors}
 \alias{concordanceFactors}
-\title{concordanceRunner}
+\title{concordanceFactors}
 \usage{
 concordanceFactors(
   species.tree = NULL,
   alignment = NULL,
   gene.trees = NULL,
   output.name = NULL,
-  overwrite = TRUE,
+  overwrite = FALSE,
   quiet = TRUE,
   threads = 1
 )
 }
 \arguments{
-\item{overwrite}{overwrite if file exists?}
+\item{species.tree}{a species trees (e.g. from astral) to assess concordance}
+
+\item{alignment}{a concatenated alignment file}
+
+\item{gene.trees}{a folder of genetree files that are concatenated.}
+
+\item{output.name}{the output name for the concordance files}
+
+\item{overwrite}{overwrite = TRUE to overwrite existing files}
 
 \item{quiet}{hides the screen output from astral if desired}
 
 \item{threads}{how many threads to use}
-
-\item{alignment.dir}{a folder of alignment files that are concatenated.}
-
-\item{species.tree.dir}{a folder of species trees (e.g. from astral) to assess concordance}
-
-\item{genetree.dir}{a folder of genetree files that are concatenated.}
-
-\item{output.dir}{the output directory name for the astral file}
 }
 \value{
-IQTree concordance factors are run using this function as a wrapper. The CF output is saved to file, and can be read into R using the function "readConcordance".
+IQ-TREE 2 concordance factors files
 }
 \description{
-This function runs many concordance factor analyses using IQTREE2
+This function runs concordance factor analyses using IQTREE2
 }
 \examples{
 

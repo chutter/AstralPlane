@@ -7,12 +7,12 @@
 setupAstral(
   genetree.folder = NULL,
   output.name = NULL,
-  overwrite = TRUE,
+  overwrite = FALSE,
   taxa.remove = NULL,
   min.n.samples = 4,
   min.sample.prop = NULL,
   make.polytomy = TRUE,
-  polytomy.limit = 0
+  polytomy.limit = 10
 )
 }
 \arguments{
