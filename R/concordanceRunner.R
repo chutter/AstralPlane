@@ -10,6 +10,8 @@
 #'
 #' @param output.dir the output directory name for the astral file
 #'
+#' @param iqtree.path the full path to the iqtree executable if R cannot find it in the R path
+#'
 #' @param overwrite overwrite = TRUE to overwrite existing files
 #'
 #' @param quiet hides the screen output from astral if desired
@@ -42,6 +44,7 @@ concordanceRunner = function(alignment.dir = NULL,
                              species.tree.dir = NULL,
                              genetree.dir = NULL,
                              output.dir = "concordance-factors",
+                             iqtree.path = "iqtree2",
                              overwrite = FALSE,
                              quiet = TRUE,
                              threads = 1) {
@@ -105,6 +108,7 @@ concordanceRunner = function(alignment.dir = NULL,
                        alignment = paste0(alignment.dir, "/", align.file),
                        gene.trees = paste0(genetree.dir, "/", gene.tree),
                        output.name = paste0(output.dir, "/", dataset.name),
+                       iqtree.path = iqtree.path,
                        quiet = quiet,
                        threads = threads,
                        overwrite = overwrite)

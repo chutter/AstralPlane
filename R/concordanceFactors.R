@@ -10,6 +10,8 @@
 #'
 #' @param output.name the output name for the concordance files
 #'
+#' @param iqtree.path the full path to the iqtree executable if R cannot find it in the R path
+#'
 #' @param overwrite overwrite = TRUE to overwrite existing files
 #'
 #' @param quiet hides the screen output from astral if desired
@@ -33,6 +35,7 @@ concordanceFactors = function(species.tree = NULL,
                               alignment = NULL,
                               gene.trees = NULL,
                               output.name = NULL,
+                              iqtree.path = "iqtree2",
                               overwrite = FALSE,
                               quiet = TRUE,
                               threads = 1) {
@@ -80,7 +83,7 @@ concordanceFactors = function(species.tree = NULL,
     }#end if
   }#end if
 
-  system(paste0("iqtree2 -t ", species.tree,
+  system(paste0(iqtree.path, " -t ", species.tree,
                 " --gcf ", gene.trees,
                 " -s ", alignment,
                 " --scf 100 --prefix ", output.name,
