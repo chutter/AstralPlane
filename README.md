@@ -254,9 +254,10 @@ datasets = list.dirs(genetree.folder, full.names = F, recursive = F)
 for (i in 1:length(datasets)){
 
   #Read in the astral data and tree and organize it into different slots
-  astral.data = createAstralPlane(astral.tree = paste0("test-dataset/", datasets[i], "_astral.tre"),
-                            outgroups = outgroups,
-                            tip.length = 1)
+  dataset.name = paste0("test-dataset/", datasets[i], "_astral.tre")
+  astral.data = createAstralPlane(astral.tree = dataset.name,
+                                  outgroups = outgroups,
+                                  tip.length = 1)
 
   #Plots the astral data
   astralProjection(astral.plane = astral.data,
