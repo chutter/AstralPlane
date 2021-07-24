@@ -24,7 +24,7 @@ library(AstralPlane)
 astral.path = "/usr/local/bin/Astral-5-14/astral.5.14.2.jar"
 
 #Create
-work.dir = "/Users/chutter/Dropbox/Research/1_Main-Projects/0_Working-Projects/Hylidae"
+work.dir = "/Volumes/Rodents/Australian_Rodents/Data_Processing/Astral"
 dir.create(work.dir)
 setwd(work.dir)
 
@@ -34,9 +34,9 @@ setwd(work.dir)
 ###############
 
 #Set up your directories
-tree.dir = "/Users/chutter/Dropbox/Research/1_Main-Projects/0_Working-Projects/Hylidae/Trees/Gene_Trees/all-markers_trimmed"
-outgroups = c("Phyllomedusa_tomopterna_WED_55506", "Nyctimystes_infrafrenatus_SLT_771")
-save.name = "test-dataset"
+tree.dir = "/Volumes/Rodents/Australian_Rodents/Data_Processing/Alignments/Ausred/genes_trimmed_trees"
+outgroups = c("Rattus_tunneyi_RAT130", "Rattus_colletti_RAT25")
+save.name = "Ausred"
 
 #Setting up a single dataset
 setupAstral(genetree.folder = tree.dir,

@@ -19,10 +19,12 @@
 #'
 #' @export
 
-
 createAstralPlane = function(astral.tree = NULL,
                              outgroups = NULL,
                              tip.length = 1){
+
+  #astral.tree = save.name
+  #outgroups = outgroups
 
   if(is.null(outgroups) == TRUE){ stop("Please provide outgroups.") }
   if(is.null(astral.tree) == TRUE){ stop("Please provide an astral tree file path.") }
@@ -37,18 +39,28 @@ createAstralPlane = function(astral.tree = NULL,
   }#end file check
 
   #Read in tree and root it properly
-  a.tree = ape::read.tree(astral.tree.name)
+  a.text = readLines(astral.tree.name, warn=FALSE)
+  a.text = gsub(";", "$", a.text)
+  a.text = gsub("'\\[", "@", a.text)
+  a.text = gsub("]'", "@", a.text)
+
+  if (substring(a.text, nchar(a.text), nchar(a.text)) != ';') { a.text = paste0(a.text, ";") }
+
+  #Read in assess tree
+  a.tree = ape::read.tree(text = a.text)
   a.tree = ape::unroot(a.tree)
   if (ape::is.monophyletic(a.tree, outgroups) == T){
     spp.tree = ape::root(phy = a.tree, outgroup = outgroups, resolve.root = T)
   } else{ spp.tree = ape::root(phy = a.tree, outgroup = outgroups, resolve.root = T) }
 
   #Formats the node data
-  node.vals = stringr::str_split(pattern = ";", spp.tree$node.label)
+  spp.tree$node.label = gsub("\\@", "", spp.tree$node.label)
+  node.vals = stringr::str_split(pattern = "\\$", spp.tree$node.label)
+  #node.vals = gsub("@", "", node.vals)
   #node.vals = node.vals[node.vals != ""]
   #node.vals = node.vals[-1]
   node.data = as.data.frame(do.call(rbind, node.vals))
-  node.data$V1 = gsub("\\[", "", node.data$V1)
+  node.data$V1 = gsub("\\@", "", node.data$V1)
   colnames(node.data) = c("q1", "q2", "q3", "f1", 'f2', "f3", "pp1", "pp2", "pp3",
                           "QC", "EN")
 
@@ -56,7 +68,7 @@ createAstralPlane = function(astral.tree = NULL,
   node.data = cbind(node = (length(spp.tree$tip.label)+1):(length(spp.tree$tip.label)+spp.tree$Nnode), node.data)
   node.data[node.data == ""] = NA
   node.data[node.data == "Root"] = NA
-  node.data[1,1] = "Root"
+  #node.data[1,1] = "Root"
 
   #Node data
   node.data$q1 = round(as.numeric(gsub("q1=", "", node.data$q1)), 3)
