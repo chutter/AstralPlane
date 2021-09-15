@@ -51,6 +51,7 @@ readAstral = function(astral.tree = NULL,
   a.tree = ape::read.tree(text = a.text)
   a.tree = ape::unroot(a.tree)
 
+  #Roots the tree if outgroups are provided
   if (is.null(outgroups) != T){
     if (ape::is.monophyletic(a.tree, outgroups) == T){
       spp.tree = ape::root(phy = a.tree, outgroup = outgroups, resolve.root = T)
@@ -60,9 +61,12 @@ readAstral = function(astral.tree = NULL,
   #Formats the node data
   spp.tree$node.label = gsub("\\@", "", spp.tree$node.label)
   node.vals = stringr::str_split(pattern = "\\$", spp.tree$node.label)
+
   #node.vals = gsub("@", "", node.vals)
   #node.vals = node.vals[node.vals != ""]
   #node.vals = node.vals[-1]
+
+  #Gathers metadata
   node.data = as.data.frame(do.call(rbind, node.vals))
   node.data$V1 = gsub("\\@", "", node.data$V1)
   colnames(node.data) = c("q1", "q2", "q3", "f1", 'f2', "f3", "pp1", "pp2", "pp3",
