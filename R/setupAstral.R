@@ -119,7 +119,7 @@ setupAstral = function(genetree.folder = NULL,
       } else {
         new.tree = temp.tree
       }#end else
-    }#end polytomy
+    } else { new.tree = temp.tree }
 
     #writes tree to a single file
     ape::write.tree(new.tree, file = paste0(output.name, "_genetrees.tre"), append = T)
